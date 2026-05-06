@@ -16,22 +16,8 @@ class MainActivity : ComponentActivity() {
                 override fun onCreate(savedInstanceState: Bundle?) {
                     super.onCreate(savedInstanceState)
                     setContent {
-                        //hej
-                        //Hey
-                        // hola :)
-                        // adios :)
                         MaterialTheme {
                             AppNavigation()
-                            //ny kode
-                            //testmon
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
-                            //hjvbuhjvbjhvbhj
                         }
                     }
                 }

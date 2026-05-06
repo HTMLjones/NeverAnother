@@ -16,7 +16,6 @@ fun Homescreen(navController: NavController, viewModel: neverAnotherViewModel) {
             navController.navigate("test")
         }) {
             Text("Go to Test Screen")
-            // Hejsa
         }
     }
 }
