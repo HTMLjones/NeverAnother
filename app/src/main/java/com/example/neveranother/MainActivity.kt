@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
                             AppNavigation()
                             //ny kode
                             //testmon
+                            //hjvbuhjvbjhvbhj
                         }
                     }
                 }
