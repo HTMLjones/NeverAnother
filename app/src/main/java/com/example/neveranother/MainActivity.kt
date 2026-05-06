@@ -25,6 +25,10 @@ class MainActivity : ComponentActivity() {
                             //ny kode
                             //testmon
                             //hjvbuhjvbjhvbhj
+                            //hjvbuhjvbjhvbhj
+                            //hjvbuhjvbjhvbhj
+                            //hjvbuhjvbjhvbhj
+                            //hjvbuhjvbjhvbhj
                         }
                     }
                 }
