@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
                         MaterialTheme {
                             AppNavigation()
                             //ny kode
+                            //testmon
                         }
                     }
                 }
