@@ -21,6 +21,7 @@ class MainActivity : ComponentActivity() {
                         // hola :)
                         MaterialTheme {
                             AppNavigation()
+                            //ny kode
                         }
                     }
                 }
