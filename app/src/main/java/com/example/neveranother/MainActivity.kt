@@ -12,8 +12,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MaterialTheme {
-                AppNavigation()
+            class MainActivity : ComponentActivity() {
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    setContent {
+                        //hej
+
+                        // hola :)
+                        MaterialTheme {
+                            AppNavigation()
+                        }
+                    }
+                }
             }
         }
     }
