@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
                     super.onCreate(savedInstanceState)
                     setContent {
                         //hej
-
+                        //Hey
                         // hola :)
                         MaterialTheme {
                             AppNavigation()
