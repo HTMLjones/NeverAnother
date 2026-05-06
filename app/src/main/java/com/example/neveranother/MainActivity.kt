@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
                         //hej
 
                         // hola :)
+                        // adios :)
                         MaterialTheme {
                             AppNavigation()
                         }
