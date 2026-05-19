@@ -34,7 +34,7 @@ fun BottomNavBar(navController: NavController) {
         tonalElevation = 0.dp,
         windowInsets = WindowInsets(0.dp),
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 1.dp)
+            .padding(horizontal = 16.dp, vertical = 5.dp)
             .background(
                 color = Color.White,
                 shape = RoundedCornerShape(10.dp)
