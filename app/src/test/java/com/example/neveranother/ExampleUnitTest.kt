@@ -3,11 +3,9 @@ package com.example.neveranother
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.neveranother.pages.Homescreen
-import com.example.neveranother.viewModel.neverAnotherViewModel
+import com.example.neveranother.classes.viewModel.neverAnotherViewModel
 import org.junit.Test
 
 import org.junit.Assert.*

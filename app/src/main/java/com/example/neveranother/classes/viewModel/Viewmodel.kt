@@ -1,4 +1,4 @@
-package com.example.neveranother.viewModel
+package com.example.neveranother.classes.viewModel
 
 import androidx.lifecycle.ViewModel
 

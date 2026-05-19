@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.neveranother.viewModel.neverAnotherViewModel
+import com.example.neveranother.classes.viewModel.neverAnotherViewModel
 
 @Composable
 fun Homescreen(navController: NavController, viewModel: neverAnotherViewModel) {
