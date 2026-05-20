@@ -15,31 +15,31 @@ class MeasureViewModel : ViewModel() {
             measurementId = 1,
             measurementName = "Omfang Over Brystet",
             measurementDescription = "Mål dit omfang over den fyldigste del af brystet.",
-            image = R.drawable.homeicon
+            image = R.drawable.uppercircumference
         ),
         BhMeasurements(
             measurementId = 2,
             measurementName = "Omfang Under Brystet",
             measurementDescription = "Mål dit omfang lige under brystet.",
-            image = R.drawable.carticon
+            image = R.drawable.lowercircumference
         ),
         BhMeasurements(
             measurementId = 3,
             measurementName = "Bryst Volumen Type",
             measurementDescription = "Vælg den type som passer bedst til din brystform.",
-            image = R.drawable.personicon
+            image = R.drawable.volumetypes
         ),
         BhMeasurements(
             measurementId = 4,
             measurementName = "Bryst Bredde",
             measurementDescription = "Mål vandret over brystets fyldigste punkt.",
-            image = R.drawable.homeicon
+            image = R.drawable.breastspan
         ),
         BhMeasurements(
             measurementId = 5,
             measurementName = "Bryst Højde",
             measurementDescription = "Mål lodret over brystets naturlige kurve.",
-            image = R.drawable.carticon
+            image = R.drawable.breastheight
         ),
         BhMeasurements(
             measurementId = 6,
