@@ -1,10 +1,9 @@
 package com.example.neveranother.classes
 
-class BhMeasurements(
+data class BhMeasurements(
     val measurementId: Int,
     val measurementName: String,
     val measurementDescription: String,
-) {
-    val measurementValue: Double? = null
-    val image: Int? = null
-}
+    val image: Int,
+    var measurementValue: Double? = null
+)

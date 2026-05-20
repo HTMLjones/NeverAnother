@@ -1,6 +1,5 @@
 package com.example.neveranother
 
-import android.R.attr.name
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,13 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.neveranother.component.BottomNavBar
-import com.example.neveranother.classes.viewModel.HomeViewModel
-import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.HomeScreen
 import com.example.neveranother.pages.MeasurementScreen
@@ -27,7 +23,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val measureViewModel = viewModel<MeasureViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
@@ -49,13 +44,7 @@ class MainActivity : ComponentActivity() {
                     }
                     //Measurement start screen
                     composable("measure-screen") {
-                        MeasurementScreen(
-                            onMeasurementClick = { id ->
-                                navController.navigate("measure-screen/${id}") {
-                                    launchSingleTop = true
-                                }
-                            }
-                        )
+                        MeasurementScreen()
                     }
                     //Measurement
                 }
