@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -99,7 +100,9 @@ fun registerProfileScreen() {
 
         Spacer(Modifier.height(20.dp))
 
-        krav.forEach { Text(text = "✓ $it") }
+        Column(modifier = Modifier.wrapContentWidth()) {
+            krav.forEach { Text(text = "✓ $it") }
+        }
 
         Spacer(Modifier.height(20.dp))
 

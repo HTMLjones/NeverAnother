@@ -23,6 +23,8 @@ import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ProfileStart
 import com.example.neveranother.pages.ProfileShippingScreen
 import com.example.neveranother.pages.LoginScreen
+import com.example.neveranother.pages.profileGiftCard
+import com.example.neveranother.pages.profileMeasurements
 import com.example.neveranother.pages.registerProfileScreen
 
 
