@@ -18,6 +18,7 @@ import com.example.neveranother.classes.viewModel.HomeViewModel
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.HomeScreen
 import com.example.neveranother.pages.ProfileScreen
+import com.example.neveranother.pages.registerProfileScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val homeViewModel = viewModel<HomeViewModel>()
+           val homeViewModel = viewModel<HomeViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
