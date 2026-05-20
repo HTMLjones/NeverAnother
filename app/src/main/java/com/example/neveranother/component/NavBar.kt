@@ -6,19 +6,19 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.neveranother.R
 
 
 @Composable
@@ -26,23 +26,23 @@ fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val pink = Color(0xFFE91E8C)
-    val grey = Color(0xFF9E9E9E)
+    val activeNavBarItemColor = Color.Black
+    val inactiveNavBarItemColor = Color.Black.copy(alpha = 0.40f)
 
     NavigationBar(
         containerColor = Color.Transparent,
-        tonalElevation = 0.dp,
+        tonalElevation = 2.dp,
         windowInsets = WindowInsets(0.dp),
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(horizontal = 16.dp, vertical = 5.dp)
             .background(
                 color = Color.White,
-                shape = RoundedCornerShape(50.dp)
+                shape = RoundedCornerShape(10.dp)
             )
             .border(
-                width = 1.dp,
-                color = Color(0xFFE0E0E0),
-                shape = RoundedCornerShape(50.dp)
+                width = 0.1.dp,
+                color = Color.Black,
+                shape = RoundedCornerShape(10.dp)
             )
     ) {
         // ========================= Cart ==============================
@@ -53,12 +53,15 @@ fun BottomNavBar(navController: NavController) {
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Outlined.Home,
+                    painter = painterResource(id = R.drawable.carticon),
                     contentDescription = "Cart",
-                    tint = if (currentRoute == "cart-screen") pink else grey,
-                    modifier = Modifier.size(32.dp)
+                    tint = if (currentRoute == "cart-screen") activeNavBarItemColor else inactiveNavBarItemColor,
+                    modifier = Modifier.size(40.dp)
                 )
             },
+            colors = NavigationBarItemDefaults.colors(
+                indicatorColor = Color.Transparent
+            ),
             label = null
         )
         // ===================== Home =============================
@@ -69,12 +72,15 @@ fun BottomNavBar(navController: NavController) {
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Outlined.Favorite,
+                    painter = painterResource(id = R.drawable.homeicon),
                     contentDescription = "Home",
-                    tint = if (currentRoute == "home-screen") pink else grey,
-                    modifier = Modifier.size(32.dp)
+                    tint = if (currentRoute == "home-screen") activeNavBarItemColor else inactiveNavBarItemColor,
+                    modifier = Modifier.size(40.dp)
                 )
             },
+            colors = NavigationBarItemDefaults.colors(
+                indicatorColor = Color.Transparent
+            ),
             label = null
         )
         // ======================= Profile ==============================
@@ -85,12 +91,15 @@ fun BottomNavBar(navController: NavController) {
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Outlined.Favorite,
+                    painter = painterResource(id = R.drawable.personicon),
                     contentDescription = "Profile",
-                    tint = if (currentRoute == "profile-screen") pink else grey,
-                    modifier = Modifier.size(32.dp)
+                    tint = if (currentRoute == "profile-screen") activeNavBarItemColor else inactiveNavBarItemColor,
+                    modifier = Modifier.size(40.dp)
                 )
             },
+            colors = NavigationBarItemDefaults.colors(
+                indicatorColor = Color.Transparent
+            ),
             label = null
         )
     }
