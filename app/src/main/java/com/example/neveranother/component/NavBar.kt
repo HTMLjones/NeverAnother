@@ -31,7 +31,7 @@ fun BottomNavBar(navController: NavController) {
 
     NavigationBar(
         containerColor = Color.Transparent,
-        tonalElevation = 0.dp,
+        tonalElevation = 2.dp,
         windowInsets = WindowInsets(0.dp),
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 5.dp)
