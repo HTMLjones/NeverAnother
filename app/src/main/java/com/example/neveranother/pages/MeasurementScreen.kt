@@ -93,7 +93,7 @@ fun MeasurementScreen() {
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(5f)
+                .weight(6f)
                 .padding(horizontal = 16.dp)
         )
 
@@ -179,14 +179,14 @@ fun MeasurementScreen() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(3f)
+                .weight(3.5f)
                 .padding(start = 16.dp, end = 16.dp, top = 26.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Bottom)
         ) {
             measurementRows.forEach { rowMeasurements ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     rowMeasurements.forEach { measurement ->
                         MeasureBox(
@@ -195,7 +195,7 @@ fun MeasurementScreen() {
                             measurements = measurement,
                             modifier = Modifier
                                 .weight(1f)
-                                .aspectRatio(1.35f)
+                                .aspectRatio(1.35f) //Dette for den ovale form af boxene
                         )
                     }
                 }

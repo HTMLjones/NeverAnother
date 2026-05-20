@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.neveranother.classes.BhMeasurements
-import java.util.Locale
 
 @Composable
 fun MeasureBox(
@@ -29,9 +28,8 @@ fun MeasureBox(
     measurements: BhMeasurements,
     modifier: Modifier = Modifier
 ) {
-    val displayValue = measurements.measurementValue?.let {
-        String.format(Locale.US, "%.2f", it)
-    } ?: "0.00"
+
+    val measurementInput = measurements.measurementValue ?: 0.0
 
     Column(
         modifier = modifier
@@ -76,8 +74,11 @@ fun MeasureBox(
                     .padding(horizontal = 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                //Boksens tekstfelt altså "0.0 CM"
                 Text(
-                    text = displayValue,
+                    //Virker ikke fordi den henter fra viewmodel og dermed ikke bliver opdateret
+                    // undervejs, men den skal vise de indtastede målinger når de bliver skrevet ind
+                    text = measurementInput.toString(),
                     modifier = Modifier.weight(1f),
                     color = Color(0xFF8E8E8E),
                     fontSize = 18.sp
