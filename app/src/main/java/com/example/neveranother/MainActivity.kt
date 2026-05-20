@@ -49,11 +49,12 @@ class MainActivity : ComponentActivity() {
                         HomeScreen()
                     }
                     composable("profile-screen") {
-                        LoginScreen()
+                        ProfileScreen(navController)
                     }
                     composable(route = "profile-shipping-screen") {
                         ProfileShippingScreen()
                     }
+
 
                 }
             }
