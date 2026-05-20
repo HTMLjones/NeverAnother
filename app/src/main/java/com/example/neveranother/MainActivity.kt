@@ -15,8 +15,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.classes.viewModel.HomeViewModel
+import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.HomeScreen
+import com.example.neveranother.pages.MeasurementScreen
 import com.example.neveranother.pages.ProfileScreen
 
 
@@ -25,14 +27,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val homeViewModel = viewModel<HomeViewModel>()
+            val measureViewModel = viewModel<MeasureViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "measure-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -45,6 +47,17 @@ class MainActivity : ComponentActivity() {
                     composable("profile-screen") {
                         ProfileScreen()
                     }
+                    //Measurement start screen
+                    composable("measure-screen") {
+                        MeasurementScreen(
+                            onMeasurementClick = { id ->
+                                navController.navigate("measure-screen/${id}") {
+                                    launchSingleTop = true
+                                }
+                            }
+                        )
+                    }
+                    //Measurement
                 }
             }
         }
