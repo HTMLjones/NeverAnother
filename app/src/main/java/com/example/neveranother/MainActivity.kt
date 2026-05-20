@@ -33,7 +33,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-           val homeViewModel = viewModel<HomeViewModel>()
+            profileMeasurements()
+          /* val homeViewModel = viewModel<HomeViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
@@ -59,7 +60,7 @@ class MainActivity : ComponentActivity() {
 
 
                 }
-            }
+            }*/
         }
     }
 }
