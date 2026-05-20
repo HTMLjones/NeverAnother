@@ -41,8 +41,21 @@ fun MeasurementScreen() {
     val measureViewModel = viewModel<MeasureViewModel>()
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
     val measurements = measureViewModel.measurements.take(6)
-    //Brugerens input
+
+
+
+    /*TODO lav en starter istedet for measurements.first, så den kan start på nummer 0
+    *  Der mangler nemlig stadig en forside, eller ihvertfald den startside som vi har i figma
+    *
+    * */
+
+    /*Input fra brugeren, bliver ført ind i measurementValue, men siden vi kører med predefined
+     list of measurements fra MeasureViewModel, dette forestiller jeg
+     mig bliver fikset når vi får sat databasen op, da værdierne bliver hentet fra objektet,
+      som så skal opdateres hver gang der bliver indtastet en ny værdi
+      */
     val measurementValues = measureViewModel.measurementValues
+
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
     val measurementRows = measurements.chunked(3)
 
@@ -55,8 +68,8 @@ fun MeasurementScreen() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .weight(1.2f)
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -74,7 +87,7 @@ fun MeasurementScreen() {
             Text(
                 text = "Lav dine målinger digitalt",
                 modifier = Modifier.weight(4f),
-                fontSize = 18.sp,
+                fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF1A1A1A),
                 textAlign = TextAlign.Center
@@ -101,9 +114,9 @@ fun MeasurementScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                .weight(0.8f)
                 .padding(start = 16.dp, end = 16.dp, top = 10.dp),
-            contentAlignment = Alignment.BottomStart
+            contentAlignment = Alignment.TopCenter
         ) {
             Text(
                 text = selectedMeasurement.measurementName,
@@ -119,7 +132,7 @@ fun MeasurementScreen() {
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(horizontal = 16.dp),
-            contentAlignment = Alignment.CenterStart
+            contentAlignment = Alignment.TopStart
         ) {
             Text(
                 text = selectedMeasurement.measurementDescription,
@@ -128,7 +141,7 @@ fun MeasurementScreen() {
             )
         }
 
-        // Segment 5: textfelt
+        // Segment 5: inputfelt
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -137,7 +150,7 @@ fun MeasurementScreen() {
         ) {
             OutlinedTextField(
                 value = measurementValues[selectedMeasurement.measurementId] ?: "",
-                onValueChange = { measurementValues[selectedMeasurement.measurementId] = it },
+                onValueChange = { measurementValues[selectedMeasurement.measurementId] = it },//it refers to value
                 modifier = Modifier.fillMaxWidth(0.5f),
                 placeholder = {
                     Text(
@@ -195,7 +208,7 @@ fun MeasurementScreen() {
                             measurements = measurement,
                             modifier = Modifier
                                 .weight(1f)
-                                .aspectRatio(1.35f) //Dette for den ovale form af boxene
+                                .aspectRatio(1.35f) //Dette for den ovale form af boksene
                         )
                     }
                 }

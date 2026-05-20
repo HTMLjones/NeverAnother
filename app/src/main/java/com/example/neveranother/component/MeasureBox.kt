@@ -28,7 +28,9 @@ fun MeasureBox(
     measurements: BhMeasurements,
     modifier: Modifier = Modifier
 ) {
-
+    /*Denne værdi er den værdi som er gemt på det objekt af BhMeasurements,
+    som hentes til hver boks. Forestiller mig at når databasen kommer op og
+    vi poster det der, at dette vil virke */
     val measurementInput = measurements.measurementValue ?: 0.0
 
     Column(
