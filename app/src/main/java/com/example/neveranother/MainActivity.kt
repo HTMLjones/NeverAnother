@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,7 +18,11 @@ import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.classes.viewModel.HomeViewModel
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.HomeScreen
+import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileScreen
+import com.example.neveranother.pages.ProfileStart
+import com.example.neveranother.pages.ProfileShippingScreen
+import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.registerProfileScreen
 
 
@@ -33,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "profile-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -44,8 +49,12 @@ class MainActivity : ComponentActivity() {
                         HomeScreen()
                     }
                     composable("profile-screen") {
-                        ProfileScreen()
+                        LoginScreen()
                     }
+                    composable(route = "profile-shipping-screen") {
+                        ProfileShippingScreen()
+                    }
+
                 }
             }
         }
