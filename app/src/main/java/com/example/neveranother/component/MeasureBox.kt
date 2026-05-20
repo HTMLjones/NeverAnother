@@ -53,11 +53,11 @@ fun MeasureBox(
                     .fillMaxWidth()
                     .padding(top = 2.dp),
                 color = Color(0xFF3D3F45),
-                fontSize = 16.sp,
-                lineHeight = 20.sp,
+                fontSize = 13.sp,
+                lineHeight = 17.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
-                maxLines = 2
+                maxLines = 3
             )
         }
 

@@ -15,7 +15,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -130,16 +132,46 @@ fun MeasurementScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 16.dp),
-            contentAlignment = Alignment.Center
+                .weight(1f),
+            contentAlignment = Alignment.BottomCenter
         ) {
             OutlinedTextField(
                 value = measurementValues[selectedMeasurement.measurementId] ?: "",
                 onValueChange = { measurementValues[selectedMeasurement.measurementId] = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(text = "Skriv målingen her") },
-                singleLine = true
+                modifier = Modifier.fillMaxWidth(0.5f),
+                placeholder = {
+                    Text(
+                        text = "0.00",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFB0B0B0),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF1A1A1A),
+                    textAlign = TextAlign.Center
+                ),
+                trailingIcon = {
+                    Text(
+                        text = "CM",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        color = Color(0xFFB0B0B0),
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
+                },
+                singleLine = true,
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color(0xFFE07B39),
+                    unfocusedBorderColor = Color(0xFFE07B39),
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                )
             )
         }
 
@@ -147,8 +179,8 @@ fun MeasurementScreen() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(4.5f)
-                .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 6.dp),
+                .weight(3f)
+                .padding(start = 16.dp, end = 16.dp, top = 26.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Bottom)
         ) {
             measurementRows.forEach { rowMeasurements ->
