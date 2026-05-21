@@ -46,17 +46,19 @@ import androidx.media3.common.C
 import androidx.media3.common.util.UnstableApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
 @androidx.annotation.OptIn(UnstableApi::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
 
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().apply {
-            val videoUri = //Mangler video i \res\raw\homescreenvideo...
-                Uri.parse("android.resource://${context.packageName}/${R.raw.neveranother_homescreenvideoforbedret}")
+            val videoUri = //Mangler video i \res\raw\homescreenvideo.. derfor har jeg lagt anden video ind som placeholder til videoen er med i git
+                //Uri.parse("android.resource://${context.packageName}/${R.raw.neveranother_homescreenvideoforbedret}")
+                Uri.parse("android.resource://${context.packageName}/${R.raw.underb}")
 
             val mediaItem = MediaItem.fromUri(videoUri)
             setMediaItem(mediaItem)
@@ -129,7 +131,8 @@ fun HomeScreen() {
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "Skabt til dig. Ikke til standardmål.",
+                        text = "Den rigtige video er ikke pushet, så har lige lagt guide video ind som placeholder så vi kan køre appen" +
+                                "Skabt til dig. Ikke til standardmål.",
                         color = Color.White
                     )
 
@@ -146,7 +149,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(100.dp))
 
             Button(
-                onClick = {},
+                onClick = { navController.navigate("measure-screen") }, //Lagt navigation ind på knappen
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .height(52.dp)

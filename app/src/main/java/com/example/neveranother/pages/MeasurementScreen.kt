@@ -2,7 +2,10 @@ package com.example.neveranother.pages
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -202,14 +206,43 @@ fun MeasurementScreen() {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     rowMeasurements.forEach { measurement ->
-                        MeasureBox(
-                            title = measurement.measurementName,
-                            onClick = { selectedMeasurement = measurement },
-                            measurements = measurement,
-                            modifier = Modifier
-                                .weight(1f)
-                                .aspectRatio(1.35f) //Dette for den ovale form af boksene
-                        )
+                        if (measurement.measurementId == 6) {
+                            // Burde laves som component men den sidste box er en knap istedet for en MeasureBox
+                            Box(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .aspectRatio(1.35f)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .background(Color(0xFFDCD8CB))
+                                    .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(10.dp))
+                                    .clickable { /* Knap navigation */ },
+                                /*Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
+                                lave selectedMeasurement = measurement.measurementGuidePath agtigt for navigation
+                                men kigger på det i morgen.
+                                for at gøre det nemmere burde hjælp knappen være oppe ved siden af inputfeltet
+                                så vi kan holde "brug for hjælp knappen til "færdig" og så komme til resultat
+                                 */
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = "Brug for hjælp?",
+                                    color = Color(0xFF3D3F45),
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                                )
+                            }
+                        } else {
+                            MeasureBox(
+                                title = measurement.measurementName,
+                                onClick = { selectedMeasurement = measurement },
+                                measurements = measurement,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .aspectRatio(1.35f)
+                            )
+                        }
                     }
                 }
             }

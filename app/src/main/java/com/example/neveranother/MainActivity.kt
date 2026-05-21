@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.pages.CartScreen
+import com.example.neveranother.pages.GuideScreen
 import com.example.neveranother.pages.HomeScreen
 import com.example.neveranother.pages.MeasurementScreen
 import com.example.neveranother.pages.ProfileScreen
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "measure-screen",
+                    startDestination = "home-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         CartScreen()
                     }
                     composable("home-screen") {
-                        HomeScreen()
+                        HomeScreen(navController)
                     }
                     composable("profile-screen") {
                         ProfileScreen()
@@ -52,6 +53,15 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("result-screen") {
                         ResultScreen()
+                    }
+                    composable("guide-screen"){
+                        /*GuideScreen(
+                            selectedGuide = TODO(),
+                            value = TODO(),
+                            onValueChange = TODO(),
+                            onContinue = TODO(),
+                            onBack = TODO()
+                        )*/
                     }
                 }
             }
