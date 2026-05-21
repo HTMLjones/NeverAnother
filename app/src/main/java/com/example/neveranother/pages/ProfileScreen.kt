@@ -35,6 +35,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.imePadding
 
 /* Jazmin*/
 
@@ -44,7 +47,9 @@ fun ProfileScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFAF8F5))
+            .background(Color(0xFFFFF8F5))
+            .verticalScroll(rememberScrollState())
+            .imePadding()
             .padding(horizontal = 34.dp)
             .padding(top = 42.dp),
         horizontalAlignment = Alignment.CenterHorizontally
