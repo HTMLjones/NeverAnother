@@ -55,7 +55,7 @@ fun HomeScreen() {
 
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().apply {
-            val videoUri =
+            val videoUri = //Mangler video i \res\raw\homescreenvideo...
                 Uri.parse("android.resource://${context.packageName}/${R.raw.neveranother_homescreenvideoforbedret}")
 
             val mediaItem = MediaItem.fromUri(videoUri)

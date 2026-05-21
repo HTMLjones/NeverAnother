@@ -18,6 +18,7 @@ import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.HomeScreen
 import com.example.neveranother.pages.MeasurementScreen
 import com.example.neveranother.pages.ProfileScreen
+import com.example.neveranother.pages.ResultScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +50,9 @@ class MainActivity : ComponentActivity() {
                     composable("measure-screen") {
                         MeasurementScreen()
                     }
-                    //Measurement
+                    composable("result-screen") {
+                        ResultScreen()
+                    }
                 }
             }
         }
