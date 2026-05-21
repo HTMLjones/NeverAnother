@@ -60,4 +60,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation(
+        "androidx.media3:media3-exoplayer:1.10.1"
+    )
+
+    implementation(
+        "androidx.media3:media3-ui:1.10.1"
+    )
 }
