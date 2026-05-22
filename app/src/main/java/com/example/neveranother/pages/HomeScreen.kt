@@ -2,9 +2,7 @@ package com.example.neveranother.pages
 
 
 
-import android.R.attr.repeatMode
-import android.annotation.SuppressLint
-import android.graphics.Paint
+
 import com.example.neveranother.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -22,19 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import android.net.Uri
-import android.os.Looper.prepare
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.MediaItem
@@ -42,11 +34,11 @@ import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
-import androidx.media3.common.C
 import androidx.media3.common.util.UnstableApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.core.net.toUri
 
 
 @androidx.annotation.OptIn(UnstableApi::class)
@@ -56,9 +48,12 @@ fun HomeScreen(navController: NavController) {
 
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().apply {
-            val videoUri = //Mangler video i \res\raw\homescreenvideo.. derfor har jeg lagt anden video ind som placeholder til videoen er med i git
+            val videoUri =
+                //Mangler video i \res\raw\homescreenvideo.. Derfor har jeg lagt anden video ind som placeholder til videoen er med i git
                 //Uri.parse("android.resource://${context.packageName}/${R.raw.neveranother_homescreenvideoforbedret}")
-                Uri.parse("android.resource://${context.packageName}/${R.raw.homescreenvideo}")
+                // Teksten ovenover er det som stod efter lighedstegnet tidligere, efterfølgende kom android studio med en anbefaling til,
+                // at ændre koden så det stod lidt "pænere".
+                "android.resource://${context.packageName}/${R.raw.homescreenvideo}".toUri()
 
             val mediaItem = MediaItem.fromUri(videoUri)
             setMediaItem(mediaItem)
@@ -131,8 +126,7 @@ fun HomeScreen(navController: NavController) {
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "Den rigtige video er ikke pushet, så har lige lagt guide video ind som placeholder så vi kan køre appen" +
-                                "Skabt til dig. Ikke til standardmål.",
+                        text = "Skabt til dig. Ikke til standardmål.",
                         color = Color.White
                     )
 
