@@ -36,13 +36,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.neveranother.R
+import com.example.neveranother.classes.controller.ProfilController
 
 
-@Preview
+
 @Composable
 // Jonas Mørk Nielsen
-fun registerProfileScreen() {
+fun registerProfileScreen(navController: NavController) {
 
     val OrangeColor = Color(0xFFFF5F00)
 
