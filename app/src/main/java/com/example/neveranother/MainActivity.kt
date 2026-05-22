@@ -23,6 +23,7 @@ import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ProfileShippingScreen
 import com.example.neveranother.pages.MeasurementScreen
+import com.example.neveranother.pages.ProfileGiftCardScreen
 import com.example.neveranother.pages.ProfileMeasurementsScreen
 import com.example.neveranother.pages.ProfileStartScreen
 import com.example.neveranother.pages.ResultScreen
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
                         ProfileScreen(navController)
                     }
                     composable(route = "profile-shipping-screen") {
-                        ProfileShippingScreen()
+                        ProfileShippingScreen(navController)
                     }
 
                     //Profile
@@ -87,6 +88,23 @@ class MainActivity : ComponentActivity() {
                             navController =
                             navController
                         )
+                    }
+                    composable(route= "shipping") {
+                        ProfileShippingScreen(
+                            navController =
+                                navController
+                        )
+                    }
+                    composable("profile-measurements-screen") {
+                        ProfileMeasurementsScreen(navController)
+                    }
+
+                    composable("measurement-screen") {
+                        MeasurementScreen(navController)
+                    }
+
+                    composable("gavekort"){
+                        ProfileGiftCardScreen(navController)
                     }
 
                     //Measurement start screen

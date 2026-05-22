@@ -109,7 +109,7 @@ fun registerProfileScreen(navController: NavController) {
         Spacer(Modifier.height(20.dp))
 
         Button(
-            onClick = { },
+            onClick = {navController.navigate("shipping") },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF6A00)
