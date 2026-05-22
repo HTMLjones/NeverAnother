@@ -24,12 +24,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.neveranother.R
 import com.example.neveranother.classes.viewModel.MeasureViewModel
+import com.example.neveranother.component.HeaderWithReturn
 
 //Kena
 @Composable
-fun CartScreen() {
+fun CartScreen(navController: NavController) {
     viewModel<MeasureViewModel>()
 
     //Bare fjern background color, jeg brugte det bare til spacing af siden.
@@ -38,22 +40,7 @@ fun CartScreen() {
         modifier = Modifier.fillMaxSize()
     ) {
         // Segment 1: Overskrift
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1.5f),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.neveranotherlogo),
-                contentDescription = "Never Another logo",
-                modifier = Modifier
-                    .width(220.dp)
-                    .height(80.dp),
-                contentScale = ContentScale.Fit
-            )
-        }
+        HeaderWithReturn(navController)
         // Segment 2: Kurv indhold visuelt
         Row(
             modifier = Modifier

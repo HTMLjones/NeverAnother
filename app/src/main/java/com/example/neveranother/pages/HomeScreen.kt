@@ -37,6 +37,8 @@ import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.navigation.NavController
 import com.example.neveranother.R
+import com.example.neveranother.component.HeaderTitleLogo
+import com.example.neveranother.component.HeaderWithReturn
 
 //Kena
 @androidx.annotation.OptIn(UnstableApi::class)
@@ -77,14 +79,7 @@ fun HomeScreen(navController: NavController) {
                 .padding(16.dp)
         ) {
             // NeverAnother logo, på toppen af skærmen.
-            Image(
-                painter = painterResource(id = R.drawable.neveranotherlogo),
-                contentDescription = "Never Another logo",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(80.dp),
-                contentScale = ContentScale.Fit
-            )
+            HeaderTitleLogo()
             Spacer(modifier = Modifier.height(16.dp))
 
             // Til videoen fik jeg lidt hjælp, af AI pga. videoen ikke måtte være en res drawable,
