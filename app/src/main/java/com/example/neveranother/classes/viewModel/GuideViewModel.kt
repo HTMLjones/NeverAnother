@@ -6,7 +6,9 @@ import com.example.neveranother.R
 import com.example.neveranother.classes.MeasurementGuide
 
 class GuideViewModel : ViewModel() {
-    // Gemmer brugerens input per måling (nøgle = measurementId)
+    companion object {
+        var selectedGuideId = 1
+    }
     val measurementValues = mutableStateMapOf<Int, String>()
 
     val guides = listOf<MeasurementGuide>(
@@ -53,7 +55,7 @@ class GuideViewModel : ViewModel() {
 
 
             MeasurementGuide(
-                measurementId = 3,
+                measurementId = 4,
                 title = "Bryst bredde",
 
                 video = R.raw.widthb,
@@ -76,7 +78,7 @@ class GuideViewModel : ViewModel() {
 
 
             MeasurementGuide(
-                measurementId = 4,
+                measurementId = 5,
                 title = "Bryst højde",
 
                 video = R.raw.heigthb,

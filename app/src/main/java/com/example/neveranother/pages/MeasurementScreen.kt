@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
@@ -37,11 +38,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.component.MeasureBox
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.IconButton
+import com.example.neveranother.classes.viewModel.GuideViewModel
 
 @Composable
-fun MeasurementScreen() {
+fun MeasurementScreen(
+    navController:
+    NavController
+) {
     val measureViewModel = viewModel<MeasureViewModel>()
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
     val measurements = measureViewModel.measurements.take(6)
@@ -59,7 +67,8 @@ fun MeasurementScreen() {
       som så skal opdateres hver gang der bliver indtastet en ny værdi
       */
     val measurementValues = measureViewModel.measurementValues
-
+    val guideViewModel =
+        viewModel<GuideViewModel>()
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
     val measurementRows = measurements.chunked(3)
 
@@ -190,7 +199,41 @@ fun MeasurementScreen() {
                     unfocusedContainerColor = Color.White
                 )
             )
+            IconButton(
+                modifier =
+                    Modifier
+                        .offset(
+                            x = 130.dp,
+                            y = (-2).dp
+                        ),
+
+                onClick = {
+
+                    GuideViewModel.selectedGuideId =
+                        selectedMeasurement.measurementId
+
+
+                    navController.navigate(
+                        "guide-screen"
+                    )
+                }
+
+            ) {
+
+                Icon(
+
+                    imageVector =
+                        Icons.Default.Info,
+
+                    contentDescription =
+                        "Guide",
+
+                    tint =
+                        Color(0xFFE07B39)
+                )
+            }
         }
+
 
         // Segment 6: bokse (2 rækker x 3 kolonner)
         Column(

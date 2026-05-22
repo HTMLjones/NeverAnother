@@ -1,6 +1,7 @@
 package com.example.neveranother.pages
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
@@ -9,6 +10,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
@@ -23,12 +25,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.neveranother.classes.viewModel.GuideViewModel
 import com.example.neveranother.component.VideoPlayer
 
 //Jannik
 @Composable
-fun GuideScreen() {
+fun GuideScreen(
+    navController: NavController
+) {
 
     val guideViewModel =
         viewModel<GuideViewModel>()
@@ -45,7 +50,13 @@ fun GuideScreen() {
     var selectedGuide by remember {
 
         mutableStateOf(
-            guides.first()
+
+            guides.find {
+
+                it.measurementId ==
+                        GuideViewModel.selectedGuideId
+
+            } ?: guides.first()
         )
     }
 
@@ -65,13 +76,33 @@ fun GuideScreen() {
                 Alignment.CenterVertically
         ) {
 
-            IconButton(
-                onClick = {}
-            ) {
+            Box(
+
+                modifier =
+                    Modifier
+                        .size(56.dp)
+                        .clickable {
+
+                            navController.popBackStack()
+                        },
+
+                contentAlignment =
+                    Alignment.Center
+
+            ){
 
                 Icon(
-                    Icons.Default.ArrowBack,
-                    null
+
+                    imageVector =
+                        Icons.Default.ArrowBack,
+
+                    contentDescription =
+                        "Back",
+
+                    modifier =
+                        Modifier.size(
+                            30.dp
+                        )
                 )
             }
 

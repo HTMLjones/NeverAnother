@@ -49,19 +49,19 @@ class MainActivity : ComponentActivity() {
                     }
                     //Measurement start screen
                     composable("measure-screen") {
-                        MeasurementScreen()
+                        MeasurementScreen(
+                            navController =
+                                navController
+                        )
                     }
                     composable("result-screen") {
                         ResultScreen()
                     }
-                    composable("guide-screen"){
-                        /*GuideScreen(
-                            selectedGuide = TODO(),
-                            value = TODO(),
-                            onValueChange = TODO(),
-                            onContinue = TODO(),
-                            onBack = TODO()
-                        )*/
+                    composable("guide-screen") {
+
+                        GuideScreen(
+                            navController = navController
+                        )
                     }
                 }
             }
