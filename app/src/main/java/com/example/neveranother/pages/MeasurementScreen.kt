@@ -250,7 +250,7 @@ fun MeasurementScreen(
                 ) {
                     rowMeasurements.forEach { measurement ->
                         if (measurement.measurementId == 6) {
-                            // Burde laves som component men den sidste box er en knap istedet for en MeasureBox
+                            // Burde laves som component men nu er den sidste box en knap istedet for en MeasureBox
                             Box(
                                 modifier = Modifier
                                     .weight(1f)
@@ -259,10 +259,12 @@ fun MeasurementScreen(
                                     .background(Color(0xFFDCD8CB))
                                     .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(10.dp))
                                     .clickable { /* Knap navigation */ },
-                                /*Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
+                                /*
+                                Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
                                 lave selectedMeasurement = measurement.measurementGuidePath agtigt for navigation
                                 men kigger på det i morgen.
-                                for at gøre det nemmere burde hjælp knappen være oppe ved siden af inputfeltet
+
+                                For at gøre det nemmere burde hjælp knappen være oppe ved siden af inputfeltet
                                 så vi kan holde "brug for hjælp knappen til "færdig" og så komme til resultat
                                  */
                                 contentAlignment = Alignment.Center
