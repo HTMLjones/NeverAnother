@@ -12,32 +12,42 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.neveranother.classes.GuideStates
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.neveranother.classes.viewModel.GuideViewModel
 import com.example.neveranother.component.VideoPlayer
 
 //Jannik
 @Composable
-fun GuideScreen(
+fun GuideScreen() {
 
-    selectedGuide: GuideStates,
+    val guideViewModel =
+        viewModel<GuideViewModel>()
 
-    value: String,
 
-    onValueChange: (String)->Unit,
+    val guides =
+        guideViewModel.guides.take(4)
 
-    onContinue: () -> Unit,
 
-    onBack: () -> Unit
-) {
+    val guideValues =
+        guideViewModel.measurementValues
 
-    val guide =
-        selectedGuide.guide
+
+    var selectedGuide by remember {
+
+        mutableStateOf(
+            guides.first()
+        )
+    }
 
 
     Column(
@@ -56,7 +66,7 @@ fun GuideScreen(
         ) {
 
             IconButton(
-                onClick = onBack
+                onClick = {}
             ) {
 
                 Icon(
@@ -80,7 +90,7 @@ fun GuideScreen(
         */
 
         VideoPlayer(
-            videoRes = guide.video
+            videoRes = selectedGuide.video
         )
 
 
@@ -96,7 +106,7 @@ fun GuideScreen(
             Image(
                 painter =
                     painterResource(
-                        guide.illustration
+                        selectedGuide.illustration
                     ),
 
                 contentDescription = null,
@@ -114,7 +124,7 @@ fun GuideScreen(
             Column {
 
                 Text(
-                    guide.title,
+                    selectedGuide.title,
 
                     fontSize = 24.sp,
 
@@ -123,7 +133,7 @@ fun GuideScreen(
                 )
 
                 Text(
-                    guide.explanation
+                    selectedGuide.explanation
                 )
             }
         }
@@ -144,10 +154,17 @@ fun GuideScreen(
 
             OutlinedTextField(
 
-                value = value,
+                value =
+                    guideValues[
+                        selectedGuide.measurementId
+                    ] ?: "",
 
-                onValueChange =
-                    onValueChange,
+                onValueChange = {
+
+                    guideValues[
+                        selectedGuide.measurementId
+                    ] = it
+                },
 
                 suffix = {
 
@@ -165,8 +182,7 @@ fun GuideScreen(
 
 
             Button(
-                onClick =
-                    onContinue
+                onClick ={}
             ) {
 
                 Text("Fortsæt")
@@ -195,7 +211,7 @@ fun GuideScreen(
             )
 
             Text(
-                guide.info
+                selectedGuide.info
             )
         }
     }

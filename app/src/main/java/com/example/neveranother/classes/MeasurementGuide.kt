@@ -2,6 +2,7 @@ package com.example.neveranother.classes
 
 //Jannik
 data class MeasurementGuide(
+    val measurementId: Int,
 
     val title:String,
 
