@@ -69,7 +69,6 @@ class MainActivity : ComponentActivity() {
                         ResultScreen()
                     }
                     composable("guide-screen") {
-
                         GuideScreen(
                             navController = navController
                         )

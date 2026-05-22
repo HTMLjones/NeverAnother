@@ -28,7 +28,7 @@ import com.example.neveranother.R
 /*Lavet Af Jazmin*/
 
 @Composable
-fun ProfileStart(navController: NavController) {
+fun ProfileStartScreen(navController: NavController) {
 
     Column(
         modifier = Modifier

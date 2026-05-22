@@ -32,7 +32,7 @@ import com.example.neveranother.R
 @Preview
 @Composable
 //Jonas Mørk Nielsen
-fun profileGiftCard() {
+fun ProfileGiftCardScreen() {
 
     var giftcard by remember { mutableStateOf("") }
 
