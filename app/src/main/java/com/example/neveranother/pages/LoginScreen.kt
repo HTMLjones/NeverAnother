@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -32,12 +35,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.neveranother.R
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.imePadding
 import androidx.navigation.NavController
-import com.example.neveranother.classes.controller.ProfilController
+import com.example.neveranother.R
 
 /*Jazmin*/
 
@@ -77,9 +76,7 @@ fun LoginScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(80.dp))
 
             Text(
-                text = "Email",
-                fontSize = 20.sp,
-                color = textColor
+                text = "Email", fontSize = 20.sp, color = textColor
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -94,9 +91,7 @@ fun LoginScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
-                text = "Adgangskode",
-                fontSize = 20.sp,
-                color = textColor
+                text = "Adgangskode", fontSize = 20.sp, color = textColor
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -146,10 +141,7 @@ fun LoginScreen(navController: NavController) {
 
 @Composable
 fun LoginInputField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    placeholder: String,
-    isPassword: Boolean
+    value: String, onValueChange: (String) -> Unit, placeholder: String, isPassword: Boolean
 ) {
     Box(
         modifier = Modifier
@@ -158,11 +150,8 @@ fun LoginInputField(
             .clip(RoundedCornerShape(4.dp))
             .background(Color.White)
             .border(
-                width = 1.5.dp,
-                color = Color(0xFFFF5A00),
-                shape = RoundedCornerShape(4.dp)
-            ),
-        contentAlignment = Alignment.Center
+                width = 1.5.dp, color = Color(0xFFFF5A00), shape = RoundedCornerShape(4.dp)
+            ), contentAlignment = Alignment.Center
     ) {
         BasicTextField(
             value = value,
@@ -174,9 +163,7 @@ fun LoginInputField(
                 VisualTransformation.None
             },
             textStyle = TextStyle(
-                color = Color.Black,
-                fontSize = 14.sp,
-                textAlign = TextAlign.Center
+                color = Color.Black, fontSize = 14.sp, textAlign = TextAlign.Center
             ),
             decorationBox = { innerTextField ->
                 Box(
@@ -192,8 +179,7 @@ fun LoginInputField(
                     }
                     innerTextField()
                 }
-            }
-        )
+            })
     }
 }
 

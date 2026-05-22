@@ -1,13 +1,10 @@
 package com.example.neveranother.pages
 
-import android.R.attr.divider
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,22 +27,22 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.neveranother.R
 import com.example.neveranother.classes.viewModel.MeasureViewModel
 
+//Kena
 @Composable
 fun CartScreen() {
-    val viewModel = viewModel<MeasureViewModel>()
+    viewModel<MeasureViewModel>()
 
     //Bare fjern background color, jeg brugte det bare til spacing af siden.
     //Laver videre i morgen
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         // Segment 1: Overskrift
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1.5f),
-                horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -54,7 +51,8 @@ fun CartScreen() {
                 modifier = Modifier
                     .width(220.dp)
                     .height(80.dp),
-                contentScale = ContentScale.Fit)
+                contentScale = ContentScale.Fit
+            )
         }
         // Segment 2: Kurv indhold visuelt
         Row(
@@ -69,11 +67,11 @@ fun CartScreen() {
                     .padding(horizontal = 20.dp, vertical = 12.dp)
             ) {
                 // Til produktet Bra No. 1 (hvid).
-                Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.braonehvid),
                         contentDescription = "Bra no. 1 (Hvid)",
@@ -83,37 +81,32 @@ fun CartScreen() {
                         contentScale = ContentScale.Crop
                     )
 
-                Spacer(modifier = Modifier.width(12.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
 
-                Column(modifier = Modifier
-                    .weight(1f)
-                    .padding(top = 8.dp)
-                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(top = 8.dp)
+                    ) {
+                        Text(
+                            text = "Bra no.1", fontSize = 14.sp, color = Color.Gray
+                        )
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Text(
+                            text = "Hvid", fontSize = 14.sp, color = Color.Black
+                        )
+                        Text(
+                            text = "799,00 kr", fontSize = 14.sp, color = Color.Gray
+                        )
+                    }
+
                     Text(
-                        text = "Bra no.1",
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                    Text(
-                        text = "Hvid",
-                        fontSize = 14.sp,
-                        color = Color.Black
-                    )
-                    Text(
-                        text = "799,00 kr",
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-                }
-
-                Text(
-                    text = "1",
-                    fontSize = 16.sp,
-                    color = Color.Black,
-                    modifier = Modifier.padding(top=2.dp, end=8.dp)
+                        text = "1",
+                        fontSize = 16.sp,
+                        color = Color.Black,
+                        modifier = Modifier.padding(top = 2.dp, end = 8.dp)
 
                     )
                 }
@@ -121,7 +114,7 @@ fun CartScreen() {
                 Spacer(modifier = Modifier.width(16.dp))
 
                 // Til produktet Bra No. 1 (hvid).
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
@@ -137,27 +130,22 @@ fun CartScreen() {
 
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Column(modifier = Modifier
-                        .weight(1f)
-                        .padding(top = 8.dp)
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(top = 8.dp)
                     ) {
                         Text(
-                            text = "Bra no.1",
-                            fontSize = 14.sp,
-                            color = Color.Gray
+                            text = "Bra no.1", fontSize = 14.sp, color = Color.Gray
                         )
 
                         Spacer(modifier = Modifier.width(10.dp))
 
                         Text(
-                            text = "Sort",
-                            fontSize = 14.sp,
-                            color = Color.Black
+                            text = "Sort", fontSize = 14.sp, color = Color.Black
                         )
                         Text(
-                            text = "799,00 kr",
-                            fontSize = 14.sp,
-                            color = Color.Gray
+                            text = "799,00 kr", fontSize = 14.sp, color = Color.Gray
                         )
                     }
 
@@ -165,13 +153,13 @@ fun CartScreen() {
                         text = "1",
                         fontSize = 16.sp,
                         color = Color.Black,
-                        modifier = Modifier.padding(top=2.dp, end=8.dp)
+                        modifier = Modifier.padding(top = 2.dp, end = 8.dp)
 
                     )
 
-                    }
-                    }
                 }
+            }
+        }
 
         HorizontalDivider(
             modifier = Modifier
@@ -188,31 +176,29 @@ fun CartScreen() {
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "Navn", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
                 Text(text = "Fulde navn", fontSize = 14.sp, color = Color.Black)
             }
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "E-mail", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
                 Text(text = "email@eksempel.dk", fontSize = 14.sp, color = Color.Black)
             }
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "Adresse", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "Eksempelvej 12, 2100 København Ø", fontSize = 14.sp, color = Color.Black)
+                Text(
+                    text = "Eksempelvej 12, 2100 København Ø",
+                    fontSize = 14.sp,
+                    color = Color.Black
+                )
             }
         }
         HorizontalDivider(
@@ -230,27 +216,21 @@ fun CartScreen() {
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "Subtotal", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
                 Text(text = "1598,00 DKKR", fontSize = 14.sp, color = Color.Black)
             }
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "Levering", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
                 Text(text = "39,00 DKKR", fontSize = 14.sp, color = Color.Black)
             }
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "Total", fontSize = 14.sp, color = Color.Black)
                 Spacer(modifier = Modifier.weight(1f))
@@ -273,13 +253,11 @@ fun CartScreen() {
                     .fillMaxWidth(0.65f),
                 shape = RoundedCornerShape(50),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF6A00),
-                    contentColor = Color.White
+                    containerColor = Color(0xFFFF6A00), contentColor = Color.White
                 )
             ) {
                 Text(
-                    text = "Betal nu",
-                    fontSize = 18.sp
+                    text = "Betal nu", fontSize = 18.sp
                 )
             }
         }

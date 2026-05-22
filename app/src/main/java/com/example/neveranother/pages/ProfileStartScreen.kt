@@ -1,4 +1,5 @@
 package com.example.neveranother.pages
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -59,22 +60,18 @@ fun ProfileStartScreen(navController: NavController) {
                 .height(48.dp),
             shape = RoundedCornerShape(50.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFF5A00),
-                contentColor = Color.White
+                containerColor = Color(0xFFFF5A00), contentColor = Color.White
             )
         ) {
             Text(
-                text = "Opsæt din profil",
-                fontSize = 17.sp
+                text = "Opsæt din profil", fontSize = 17.sp
             )
         }
 
         Spacer(modifier = Modifier.height(18.dp))
 
         Text(
-            text = "Har du allerede en bruger?",
-            fontSize = 15.sp,
-            color = Color.Black
+            text = "Har du allerede en bruger?", fontSize = 15.sp, color = Color.Black
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -82,20 +79,14 @@ fun ProfileStartScreen(navController: NavController) {
         Row(
             modifier = Modifier.clickable {
                 navController.navigate("Login")
-            },
-            horizontalArrangement = Arrangement.Center
+            }, horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Log ind ",
-                fontSize = 15.sp,
-                color = Color.Black
+                text = "Log ind ", fontSize = 15.sp, color = Color.Black
             )
 
             Text(
-                text = "her",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
+                text = "her", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Black
             )
         }
     }

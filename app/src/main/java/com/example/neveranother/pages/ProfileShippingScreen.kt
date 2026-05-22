@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -27,11 +30,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.neveranother.R
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.imePadding
 import androidx.navigation.NavController
+import com.example.neveranother.R
 
 /* Jazmin */
 
@@ -66,58 +66,45 @@ fun ProfileShippingScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         ShippingInputField(
-            title = "Navn",
-            value = name,
-            placeholder = "Fulde navn",
-            onValueChange = { name = it }
-        )
+            title = "Navn", value = name, placeholder = "Fulde navn", onValueChange = { name = it })
 
         ShippingInputField(
             title = "Adresse",
             value = address,
             placeholder = "Gade og husnummer",
-            onValueChange = { address = it }
-        )
+            onValueChange = { address = it })
 
         ShippingInputField(
             title = "Adresse Komponent",
             value = addressComponent,
             placeholder = "Etage/dør",
-            onValueChange = { addressComponent = it }
-        )
+            onValueChange = { addressComponent = it })
 
         ShippingInputField(
             title = "Postnummer",
             value = postalCode,
             placeholder = "f.eks. 1473",
-            onValueChange = { postalCode = it }
-        )
+            onValueChange = { postalCode = it })
 
         ShippingInputField(
             title = "Telefon",
             value = phone,
             placeholder = "+45 00 00 00 00",
-            onValueChange = { phone = it }
-        )
+            onValueChange = { phone = it })
 
         Spacer(modifier = Modifier.height(22.dp))
 
         Button(
             onClick = {
                 navController.navigate("profile-screen")
-            },
-            colors = ButtonDefaults.buttonColors(
+            }, colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF5A00)
-            ),
-            shape = RoundedCornerShape(50.dp),
-            modifier = Modifier
+            ), shape = RoundedCornerShape(50.dp), modifier = Modifier
                 .width(130.dp)
                 .height(52.dp)
         ) {
             Text(
-                text = "Fortsæt",
-                color = Color.White,
-                fontWeight = FontWeight.Bold
+                text = "Fortsæt", color = Color.White, fontWeight = FontWeight.Bold
             )
         }
     }
@@ -125,10 +112,7 @@ fun ProfileShippingScreen(navController: NavController) {
 
 @Composable
 fun ShippingInputField(
-    title: String,
-    value: String,
-    placeholder: String,
-    onValueChange: (String) -> Unit
+    title: String, value: String, placeholder: String, onValueChange: (String) -> Unit
 ) {
     Text(
         text = title,
@@ -138,25 +122,17 @@ fun ShippingInputField(
     )
 
     OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        placeholder = {
+        value = value, onValueChange = onValueChange, placeholder = {
             Text(
-                text = placeholder,
-                color = Color.Gray,
-                fontSize = 13.sp
+                text = placeholder, color = Color.Gray, fontSize = 13.sp
             )
-        },
-        singleLine = true,
-        colors = TextFieldDefaults.colors(
+        }, singleLine = true, colors = TextFieldDefaults.colors(
             focusedContainerColor = Color(0xFFFAF9F6),
             unfocusedContainerColor = Color(0xFFFAF9F6),
             focusedIndicatorColor = Color(0xFFFF5A00),
             unfocusedIndicatorColor = Color(0xFFFF5A00),
             cursorColor = Color(0xFFFF5A00)
-        ),
-        shape = RoundedCornerShape(4.dp),
-        modifier = Modifier
+        ), shape = RoundedCornerShape(4.dp), modifier = Modifier
             .width(220.dp)
             .height(54.dp)
     )

@@ -9,12 +9,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
 
+//Simon
 @Composable
 fun ResultScreen(
     navController: NavController
@@ -89,8 +90,7 @@ fun ResultScreen(
                 verticalAlignment = Alignment.Top
             ) {
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Omfang over brystet", fontSize = 14.sp, color = secondaryText)
                     Text(
@@ -102,8 +102,7 @@ fun ResultScreen(
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Omfang under brystet", fontSize = 14.sp, color = secondaryText)
                     Text(
@@ -121,8 +120,7 @@ fun ResultScreen(
                     .padding(top = 18.dp),
                 color = divider,
                 thickness = 1.dp
-            )
-            /*
+            )/*
             Anden row resultater
              */
             Row(
@@ -132,8 +130,7 @@ fun ResultScreen(
                 verticalAlignment = Alignment.Top
             ) {
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Volumen type", fontSize = 14.sp, color = secondaryText)
                     Text(
@@ -145,8 +142,7 @@ fun ResultScreen(
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Brystbredde", fontSize = 14.sp, color = secondaryText)
                     Text(
@@ -164,8 +160,7 @@ fun ResultScreen(
                     .padding(top = 18.dp),
                 color = divider,
                 thickness = 1.dp
-            )
-            /*
+            )/*
             Tredje row resultater
              */
             Row(
@@ -175,8 +170,7 @@ fun ResultScreen(
                 verticalAlignment = Alignment.Top
             ) {
                 Column(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Bryst højde", fontSize = 14.sp, color = secondaryText)
                     Text(
@@ -193,18 +187,16 @@ fun ResultScreen(
                         .fillMaxHeight(),
                     contentAlignment = Alignment.CenterEnd,
 
-                ) {
+                    ) {
                     Image(
                         painter = painterResource(id = R.drawable.logoudentekst),
                         contentDescription = "Logo",
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
             }
-        }
-        /*
+        }/*
         Tekst under logo
          */
         Row(
@@ -212,25 +204,21 @@ fun ResultScreen(
                 .fillMaxWidth()
                 .weight(0.55f)
                 .padding(horizontal = 24.dp)
-                .padding(top = 8.dp)
-            ,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Baseret på dine mål har vi fundet et BH-design, der passer til din krop.",
                 fontSize = 14.sp,
                 color = secondaryText
             )
-        }
-        /*
+        }/*
         Knapperne
         */
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(horizontal = 22.dp)
-            ,
+                .padding(horizontal = 22.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
@@ -244,7 +232,7 @@ fun ResultScreen(
                     .height(56.dp)
                     .clip(buttonShape)
                     .border(width = 1.dp, color = actionOrange, shape = buttonShape)
-                    .clickable { navController.navigate("measure-screen") },
+                    .clickable { navController.navigate("measurement-screen") },
                 contentAlignment = Alignment.Center
             ) {
                 Text(

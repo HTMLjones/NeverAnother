@@ -1,27 +1,28 @@
 package com.example.neveranother.pages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,23 +34,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.neveranother.classes.viewModel.GuideViewModel
 import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.component.MeasureBox
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.IconButton
-import com.example.neveranother.classes.viewModel.GuideViewModel
 
 //Simon
 @Composable
 fun MeasurementScreen(
-    navController:
-    NavController
+    navController: NavController
 ) {
     val measureViewModel = viewModel<MeasureViewModel>()
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
@@ -66,10 +65,7 @@ fun MeasurementScreen(
       som så skal opdateres hver gang der bliver indtastet en ny værdi
       */
     val measurementValues = measureViewModel.measurementValues
-    val guideViewModel =
-        viewModel<GuideViewModel>()
-    var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
-    /*
+    var selectedMeasurement by remember { mutableStateOf(measurements.first()) }/*
     Bliver nødt til at lave en selectedMeasurementHistory for at kunne holde track
     på hvad tilbage på siden. Kommer til at tænke på om det ikke havde været nemmere at lave
     en screen til hver af measurement siderne, så den også kan opdatere værdierne tastet ind
@@ -99,14 +95,14 @@ fun MeasurementScreen(
                         if (selectedMeasurementHistory.isNotEmpty()) {
                             val previousMeasurementId =
                                 selectedMeasurementHistory.removeAt(selectedMeasurementHistory.lastIndex)
-                            measurements.firstOrNull { it.measurementId == previousMeasurementId }?.let {
-                                selectedMeasurement = it
-                            }
+                            measurements.firstOrNull { it.measurementId == previousMeasurementId }
+                                ?.let {
+                                    selectedMeasurement = it
+                                }
                         } else {
                             navController.popBackStack()
                         }
-                    },
-                contentAlignment = Alignment.Center
+                    }, contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
@@ -175,12 +171,13 @@ fun MeasurementScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
-            contentAlignment = Alignment.BottomCenter
+                .weight(1f), contentAlignment = Alignment.BottomCenter
         ) {
             OutlinedTextField(
-                value = measurementValues[selectedMeasurement.measurementId] ?: "",
-                onValueChange = { measurementValues[selectedMeasurement.measurementId] = it },//it refers to value
+                value = measurementValues[selectedMeasurement.measurementId] ?: "0.00",
+                onValueChange = {
+                    measurementValues[selectedMeasurement.measurementId] = it
+                },//it refers to value
                 modifier = Modifier.fillMaxWidth(0.5f),
                 placeholder = {
                     Text(
@@ -218,17 +215,13 @@ fun MeasurementScreen(
             )
             //Jannik
             IconButton(
-                modifier =
-                    Modifier
-                        .offset(
-                            x = 130.dp,
-                            y = (-2).dp
-                        ),
+                modifier = Modifier.offset(
+                        x = 130.dp, y = (-2).dp
+                    ),
 
                 onClick = {
 
-                    GuideViewModel.selectedGuideId =
-                        selectedMeasurement.measurementId
+                    GuideViewModel.selectedGuideId = selectedMeasurement.measurementId
 
 
                     navController.navigate(
@@ -240,14 +233,11 @@ fun MeasurementScreen(
 
                 Icon(
 
-                    imageVector =
-                        Icons.Default.Info,
+                    imageVector = Icons.Default.Info,
 
-                    contentDescription =
-                        "Guide",
+                    contentDescription = "Guide",
 
-                    tint =
-                        Color(0xFFE07B39)
+                    tint = Color(0xFFE07B39)
                 )
             }
         }
@@ -275,9 +265,12 @@ fun MeasurementScreen(
                                     .aspectRatio(1.35f)
                                     .clip(RoundedCornerShape(10.dp))
                                     .background(Color(0xFFDCD8CB))
-                                    .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(10.dp))
-                                    .clickable { navController.navigate("result-screen") },
-                                /*
+                                    .border(
+                                        width = 2.dp,
+                                        color = Color(0xFF8A887F),
+                                        shape = RoundedCornerShape(10.dp)
+                                    )
+                                    .clickable { navController.navigate("result-screen") },/*
                                 Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
                                 lave selectedMeasurement = measurement.measurementGuidePath agtigt for navigation
                                 men kigger på det i morgen.

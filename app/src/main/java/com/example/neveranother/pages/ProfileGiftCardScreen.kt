@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -42,13 +41,15 @@ fun ProfileGiftCardScreen(navController: NavController) {
         "Min. 10 tegn",
         "Kun tal og bogstaver (A-Z, 0-9)",
         "Ingen mellemrum",
-        "Et special tegn (f.eks. ! @ & % # =)")
+        "Et special tegn (f.eks. ! @ & % # =)"
+    )
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.neveranotherlogo),
             contentDescription = "Never Another Logo",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(250.dp)
                 //Ændre i billede størrelsen
                 .requiredSize(390.dp)
@@ -65,8 +66,7 @@ fun ProfileGiftCardScreen(navController: NavController) {
             placeholder = { Text("Indtast gavekort her!") },
             shape = RoundedCornerShape(3.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = (OrangeColor),
-                unfocusedBorderColor = (OrangeColor)
+                focusedBorderColor = (OrangeColor), unfocusedBorderColor = (OrangeColor)
             )
         )
 
@@ -80,19 +80,15 @@ fun ProfileGiftCardScreen(navController: NavController) {
         Spacer(Modifier.height(20.dp))
 
         Button(
-            onClick = {navController.navigate("profile-screen") },
+            onClick = { navController.navigate("profile-screen") },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF6A00)
             ),
-            modifier = Modifier
-                .height(55.dp)
+            modifier = Modifier.height(55.dp)
         ) {
             Text(
-                text = "Indløs",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
+                text = "Indløs", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
             )
         }
     }

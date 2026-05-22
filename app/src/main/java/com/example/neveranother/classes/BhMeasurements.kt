@@ -1,5 +1,6 @@
 package com.example.neveranother.classes
 
+//Simon
 data class BhMeasurements(
     val measurementId: Int,
     val measurementName: String,

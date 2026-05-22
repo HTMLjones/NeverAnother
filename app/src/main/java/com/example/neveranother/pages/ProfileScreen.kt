@@ -97,15 +97,13 @@ fun ProfileScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(15.dp))
 
         OrderRow(
-            label = "Dine bestillinger",
-            buttonText = "Spor og administrér køb  >"
+            label = "Dine bestillinger", buttonText = "Spor og administrér køb  >"
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
         OrderRow(
-            label = "Gave kort",
-            buttonText = "Se saldo og indløs  >"
+            label = "Gave kort", buttonText = "Se saldo og indløs  >"
         )
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -120,43 +118,33 @@ fun ProfileScreen(navController: NavController) {
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OrangeButton(
-                text = "Dine Mål",
-                onClick = {
+                text = "Dine Mål", onClick = {
                     navController.navigate("profile-measurements-screen")
-                }
-            )
+                })
 
             OrangeButton(
-                text = "Mål selv",
-                onClick = {
+                text = "Mål selv", onClick = {
                     navController.navigate("measurement-screen")
-                }
-            )
+                })
         }
     }
 }
 
 @Composable
 fun ProfileInputRow(
-    label: String,
-    placeholder: String
+    label: String, placeholder: String
 ) {
     var value by remember { mutableStateOf("") }
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
 
         Text(
-            text = label,
-            fontSize = 22.sp,
-            color = Color.Black,
-            modifier = Modifier.width(120.dp)
+            text = label, fontSize = 22.sp, color = Color.Black, modifier = Modifier.width(120.dp)
         )
 
         Box(
@@ -164,12 +152,9 @@ fun ProfileInputRow(
                 .width(190.dp)
                 .height(42.dp)
                 .border(
-                    width = 1.3.dp,
-                    color = Color(0xFFFF5A00),
-                    shape = RoundedCornerShape(4.dp)
+                    width = 1.3.dp, color = Color(0xFFFF5A00), shape = RoundedCornerShape(4.dp)
                 )
-                .padding(horizontal = 18.dp),
-            contentAlignment = Alignment.CenterStart
+                .padding(horizontal = 18.dp), contentAlignment = Alignment.CenterStart
         ) {
 
             BasicTextField(
@@ -177,39 +162,30 @@ fun ProfileInputRow(
                 onValueChange = { value = it },
                 singleLine = true,
                 textStyle = TextStyle(
-                    fontSize = 13.sp,
-                    color = Color.Black
+                    fontSize = 13.sp, color = Color.Black
                 ),
                 decorationBox = { innerTextField ->
                     if (value.isEmpty()) {
                         Text(
-                            text = placeholder,
-                            color = Color.LightGray,
-                            fontSize = 13.sp
+                            text = placeholder, color = Color.LightGray, fontSize = 13.sp
                         )
                     }
                     innerTextField()
-                }
-            )
+                })
         }
     }
 }
 
 @Composable
 fun OrderRow(
-    label: String,
-    buttonText: String
+    label: String, buttonText: String
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
 
         Text(
-            text = label,
-            fontSize = 18.sp,
-            color = Color.Black,
-            modifier = Modifier.width(190.dp)
+            text = label, fontSize = 18.sp, color = Color.Black, modifier = Modifier.width(190.dp)
         )
 
         Box(
@@ -217,11 +193,8 @@ fun OrderRow(
                 .width(160.dp)
                 .height(36.dp)
                 .border(
-                    width = 1.3.dp,
-                    color = Color(0xFFFF5A00),
-                    shape = RoundedCornerShape(3.dp)
-                ),
-            contentAlignment = Alignment.Center
+                    width = 1.3.dp, color = Color(0xFFFF5A00), shape = RoundedCornerShape(3.dp)
+                ), contentAlignment = Alignment.Center
         ) {
 
             Text(
@@ -237,8 +210,7 @@ fun OrderRow(
 
 @Composable
 fun OrangeButton(
-    text: String,
-    onClick: () -> Unit
+    text: String, onClick: () -> Unit
 ) {
     Button(
         onClick = onClick,
@@ -252,10 +224,7 @@ fun OrangeButton(
             .height(45.dp)
     ) {
         Text(
-            text = text,
-            color = Color.White,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold
+            text = text, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold
         )
     }
 }
@@ -263,8 +232,6 @@ fun OrangeButton(
 @Composable
 fun OrangeLine() {
     Divider(
-        color = Color(0xFFFF5A00),
-        thickness = 1.dp,
-        modifier = Modifier.fillMaxWidth()
+        color = Color(0xFFFF5A00), thickness = 1.dp, modifier = Modifier.fillMaxWidth()
     )
 }

@@ -25,13 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.neveranother.R
 
 
 @Composable
+// NAVN MANGLER
 fun ProfileMeasurementsScreen(navController: NavController) {
     val OrangeColor = Color(0xFFFF5F00)
 
@@ -48,7 +48,8 @@ fun ProfileMeasurementsScreen(navController: NavController) {
         Image(
             painter = painterResource(id = R.drawable.neveranotherlogo),
             contentDescription = "Never Another Logo",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(180.dp)
                 //Ændre i billede størrelsen
                 .requiredSize(390.dp)
@@ -62,9 +63,7 @@ fun ProfileMeasurementsScreen(navController: NavController) {
                 .height(450.dp)
                 .width(350.dp)
                 .border(
-                    width = 3.dp,
-                    color = (OrangeColor),
-                    shape = RoundedCornerShape(5.dp)
+                    width = 3.dp, color = (OrangeColor), shape = RoundedCornerShape(5.dp)
                 )
 
         )
@@ -124,8 +123,7 @@ fun ProfileMeasurementsScreen(navController: NavController) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Dato for mål")
                     Text(
-                        text = dato.ifEmpty { "xx/xx/xx" },
-                        modifier = Modifier.padding(top = 8.dp)
+                        text = dato.ifEmpty { "xx/xx/xx" }, modifier = Modifier.padding(top = 8.dp)
                     )
                 }
             }
@@ -135,12 +133,10 @@ fun ProfileMeasurementsScreen(navController: NavController) {
             // Tekst over knapper
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Dine Mål",
-                    modifier = Modifier.weight(1f)
+                    text = "Dine Mål", modifier = Modifier.weight(1f)
                 )
                 Text(
-                    text = "Mål selv",
-                    modifier = Modifier.weight(1f)
+                    text = "Mål selv", modifier = Modifier.weight(1f)
                 )
             }
 
@@ -152,7 +148,8 @@ fun ProfileMeasurementsScreen(navController: NavController) {
                     onClick = { },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = (OrangeColor))
+                        containerColor = (OrangeColor)
+                    )
                 ) {
                     Text("Slet mål")
                 }
@@ -163,11 +160,12 @@ fun ProfileMeasurementsScreen(navController: NavController) {
                     onClick = { },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = (OrangeColor))
+                        containerColor = (OrangeColor)
+                    )
                 ) {
                     Text("Bestil")
                 }
             }
         }
     }
-    }
+}
