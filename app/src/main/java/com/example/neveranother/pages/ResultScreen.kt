@@ -63,6 +63,7 @@ fun ResultScreen(
                 contentDescription = "Tilbage knap",
                 tint = primaryText,
                 modifier = Modifier.size(38.dp)
+                    .clickable { navController.popBackStack() }
             )
             Spacer(modifier = Modifier.width(16.dp))
             Text(
@@ -224,6 +225,7 @@ fun ResultScreen(
 
             /*
             Havde problemer med Button function, så jeg har brugt box istedet
+            AI hjalp med layoutstyling så det lignede de knapper som var der før
              */
             val buttonShape = RoundedCornerShape(8.dp)
             Box(
