@@ -45,7 +45,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //Home screen
                     composable("cart-screen") {
-                        CartScreen()
+                        CartScreen(
+                            navController = navController
+                        )
                     }
                     composable("home-screen") {
                         HomeScreen(navController)
