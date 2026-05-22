@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "result-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -74,7 +74,6 @@ class MainActivity : ComponentActivity() {
                                 navController
                         )
                     }
-
                     //Profile login
                     composable(route = "Login") {
                         LoginScreen(
@@ -82,7 +81,6 @@ class MainActivity : ComponentActivity() {
                                 navController
                         )
                     }
-
                     //Profil
                     composable(route = "profile-screen") {
                         ProfileScreen(

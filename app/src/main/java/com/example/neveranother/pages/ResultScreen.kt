@@ -82,7 +82,6 @@ fun ResultScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(4f)
-                .background(Color.Yellow)
         ) {
             //Venstre side over volume result
             Column(
@@ -90,14 +89,12 @@ fun ResultScreen() {
                     .fillMaxHeight()
                     .fillMaxWidth()
                     .weight(1f)
-                    .background(color = Color.Yellow)
             ) {
                 //Over
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
-                        .background(Color.Green)
                 ) {
                     Box(
                         modifier = Modifier
@@ -131,13 +128,13 @@ fun ResultScreen() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
-                        .background(Color.Green)
                 ) {
-                    Row(
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(1f)
-                            .background(Color.Red)
+                            .padding(start = 16.dp, end = 16.dp, top = 10.dp),
+                        contentAlignment = Alignment.TopCenter
                     ) {
                         Text(
                             text = "Volumen type",
