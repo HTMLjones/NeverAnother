@@ -65,12 +65,13 @@ fun MeasurementScreen(
       som så skal opdateres hver gang der bliver indtastet en ny værdi
       */
     val measurementValues = measureViewModel.measurementValues
-    var selectedMeasurement by remember { mutableStateOf(measurements.first()) }/*
-    Bliver nødt til at lave en selectedMeasurementHistory for at kunne holde track
-    på hvad tilbage på siden. Kommer til at tænke på om det ikke havde været nemmere at lave
-    en screen til hver af measurement siderne, så den også kan opdatere værdierne tastet ind
-    fra view model
-     */
+    var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
+
+/*
+#####Fik en del hjælp af AI her
+Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og dermed ville gå tilbage til homepage
+så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
+ */
     val selectedMeasurementHistory = remember { mutableListOf<Int>() }
     val measurementRows = measurements.chunked(3)
 
@@ -92,6 +93,7 @@ fun MeasurementScreen(
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable {
+//#####Fortsættelse af AI hjælp her til tilbage knap historik
                         if (selectedMeasurementHistory.isNotEmpty()) {
                             val previousMeasurementId =
                                 selectedMeasurementHistory.removeAt(selectedMeasurementHistory.lastIndex)
@@ -174,7 +176,8 @@ fun MeasurementScreen(
                 .weight(1f), contentAlignment = Alignment.BottomCenter
         ) {
             OutlinedTextField(
-                value = measurementValues[selectedMeasurement.measurementId] ?: "0.00",
+                //Her er der også fejl ift measurement Value
+                value = measurementValues[selectedMeasurement.measurementId] ?: "",
                 onValueChange = {
                     measurementValues[selectedMeasurement.measurementId] = it
                 },//it refers to value
