@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("measurement-screen") {
-                        MeasurementScreen(navController)
+                        MeasurementScreen(navController = navController)
                     }
 
                     composable("gavekort"){
@@ -114,7 +114,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("result-screen") {
-                        ResultScreen()
+                        ResultScreen(navController = navController)
                     }
                     composable("guide-screen") {
                         GuideScreen(
