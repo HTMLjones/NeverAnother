@@ -23,6 +23,7 @@ import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ProfileShippingScreen
 import com.example.neveranother.pages.MeasurementScreen
 import com.example.neveranother.pages.ProfileMeasurementsScreen
+import com.example.neveranother.pages.ProfileStartScreen
 import com.example.neveranother.pages.ResultScreen
 
 
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "result-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -55,8 +56,11 @@ class MainActivity : ComponentActivity() {
                     composable(route = "profile-shipping-screen") {
                         ProfileShippingScreen()
                     }
-                    composable(route = "profile-measurements-screen") {
-                        ProfileMeasurementsScreen()
+                    composable(route = "profile-screen") {
+                        ProfileStartScreen(
+                            navController =
+                                navController
+                        )
                     }
                     //Measurement start screen
                     composable("measure-screen") {
@@ -69,7 +73,6 @@ class MainActivity : ComponentActivity() {
                         ResultScreen()
                     }
                     composable("guide-screen") {
-
                         GuideScreen(
                             navController = navController
                         )
