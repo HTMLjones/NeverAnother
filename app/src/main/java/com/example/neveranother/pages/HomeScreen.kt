@@ -104,6 +104,7 @@ fun HomeScreen(navController: NavController) {
                 .fillMaxWidth()
                 .height(420.dp)
             ) {
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
