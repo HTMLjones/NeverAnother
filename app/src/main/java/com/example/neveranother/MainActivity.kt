@@ -23,6 +23,7 @@ import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ProfileShippingScreen
 import com.example.neveranother.pages.MeasurementScreen
+import com.example.neveranother.pages.ProfileGiftCardScreen
 import com.example.neveranother.pages.ProfileMeasurementsScreen
 import com.example.neveranother.pages.ProfileStartScreen
 import com.example.neveranother.pages.ResultScreen
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "result-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
                         ProfileScreen(navController)
                     }
                     composable(route = "profile-shipping-screen") {
-                        ProfileShippingScreen()
+                        ProfileShippingScreen(navController)
                     }
 
                     //Profile
@@ -74,7 +75,6 @@ class MainActivity : ComponentActivity() {
                                 navController
                         )
                     }
-
                     //Profile login
                     composable(route = "Login") {
                         LoginScreen(
@@ -82,13 +82,29 @@ class MainActivity : ComponentActivity() {
                                 navController
                         )
                     }
-
                     //Profil
                     composable(route = "profile-screen") {
                         ProfileScreen(
                             navController =
                             navController
                         )
+                    }
+                    composable(route= "shipping") {
+                        ProfileShippingScreen(
+                            navController =
+                                navController
+                        )
+                    }
+                    composable("profile-measurements-screen") {
+                        ProfileMeasurementsScreen(navController)
+                    }
+
+                    composable("measurement-screen") {
+                        MeasurementScreen(navController = navController)
+                    }
+
+                    composable("gavekort"){
+                        ProfileGiftCardScreen(navController)
                     }
 
                     //Measurement start screen
@@ -98,7 +114,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("result-screen") {
-                        ResultScreen()
+                        ResultScreen(navController = navController)
                     }
                     composable("guide-screen") {
                         GuideScreen(
