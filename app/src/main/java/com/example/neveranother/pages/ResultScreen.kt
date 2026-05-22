@@ -2,6 +2,8 @@ package com.example.neveranother.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,15 +18,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,22 +32,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.neveranother.R
 
 @Composable
 fun ResultScreen(
     navController: NavController
 ) {
-    val navController = rememberNavController()
     val screenBackground = Color(0xFFF5EFE3)
     val primaryText = Color(0xFF2F3136)
     val secondaryText = Color(0xFF4A4A4A)
     val divider = Color(0xFFD3CBC0)
     val actionOrange = Color(0xFFFF6A00)
 
-    //Bare fjern background color, jeg brugte det bare til spacing af siden.
-    //Laver videre i morgen
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -208,7 +204,9 @@ fun ResultScreen(
                 }
             }
         }
-
+        /*
+        Tekst under logo
+         */
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -224,7 +222,9 @@ fun ResultScreen(
                 color = secondaryText
             )
         }
-
+        /*
+        Knapperne
+        */
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -233,43 +233,46 @@ fun ResultScreen(
             ,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedButton(
-                onClick = { navController.navigate("measure-screen") },
+
+            /*
+            Havde problemer med Button function, så jeg har brugt box istedet
+             */
+            val buttonShape = RoundedCornerShape(8.dp)
+            Box(
                 modifier = Modifier
                     .weight(1f)
-                    .height(56.dp),
-                shape = RoundedCornerShape(8.dp),
-                border = androidx.compose.foundation.BorderStroke(1.dp, actionOrange),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = actionOrange
-                )
+                    .height(56.dp)
+                    .clip(buttonShape)
+                    .border(width = 1.dp, color = actionOrange, shape = buttonShape)
+                    .clickable { navController.navigate("measure-screen") },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Start forfra",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
-                    softWrap = false
+                    softWrap = false,
+                    color = actionOrange
                 )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Button(
-                onClick = { navController.navigate("cart-screen") },
+            Box(
                 modifier = Modifier
                     .weight(2f)
-                    .height(56.dp),
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = actionOrange,
-                    contentColor = Color.White
-                )
+                    .height(56.dp)
+                    .clip(buttonShape)
+                    .background(actionOrange)
+                    .clickable { navController.navigate("cart-screen") },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Tilføj til kurv",
                     fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
             }

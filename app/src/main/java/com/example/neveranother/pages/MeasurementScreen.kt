@@ -45,6 +45,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.IconButton
 import com.example.neveranother.classes.viewModel.GuideViewModel
 
+//Simon
 @Composable
 fun MeasurementScreen(
     navController:
@@ -53,8 +54,6 @@ fun MeasurementScreen(
     val measureViewModel = viewModel<MeasureViewModel>()
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
     val measurements = measureViewModel.measurements.take(6)
-
-
 
     /*TODO lav en starter istedet for measurements.first, så den kan start på nummer 0
     *  Der mangler nemlig stadig en forside, eller ihvertfald den startside som vi har i figma
@@ -70,6 +69,13 @@ fun MeasurementScreen(
     val guideViewModel =
         viewModel<GuideViewModel>()
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
+    /*
+    Bliver nødt til at lave en selectedMeasurementHistory for at kunne holde track
+    på hvad tilbage på siden. Kommer til at tænke på om det ikke havde været nemmere at lave
+    en screen til hver af measurement siderne, så den også kan opdatere værdierne tastet ind
+    fra view model
+     */
+    val selectedMeasurementHistory = remember { mutableListOf<Int>() }
     val measurementRows = measurements.chunked(3)
 
     Column(
@@ -88,7 +94,18 @@ fun MeasurementScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .clickable {
+                        if (selectedMeasurementHistory.isNotEmpty()) {
+                            val previousMeasurementId =
+                                selectedMeasurementHistory.removeAt(selectedMeasurementHistory.lastIndex)
+                            measurements.firstOrNull { it.measurementId == previousMeasurementId }?.let {
+                                selectedMeasurement = it
+                            }
+                        } else {
+                            navController.popBackStack()
+                        }
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -139,7 +156,7 @@ fun MeasurementScreen(
             )
         }
 
-        // Segment 4: measurementDescription
+        //Simon Segment 4: measurementDescription
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -154,7 +171,7 @@ fun MeasurementScreen(
             )
         }
 
-        // Segment 5: inputfelt
+        //Simon Segment 5: inputfelt
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -199,6 +216,7 @@ fun MeasurementScreen(
                     unfocusedContainerColor = Color.White
                 )
             )
+            //Jannik
             IconButton(
                 modifier =
                     Modifier
@@ -235,7 +253,7 @@ fun MeasurementScreen(
         }
 
 
-        // Segment 6: bokse (2 rækker x 3 kolonner)
+        //Simon Segment 6: bokse (2 rækker x 3 kolonner)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -258,7 +276,7 @@ fun MeasurementScreen(
                                     .clip(RoundedCornerShape(10.dp))
                                     .background(Color(0xFFDCD8CB))
                                     .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(10.dp))
-                                    .clickable { /* Knap navigation */ },
+                                    .clickable { navController.navigate("result-screen") },
                                 /*
                                 Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
                                 lave selectedMeasurement = measurement.measurementGuidePath agtigt for navigation
@@ -270,9 +288,9 @@ fun MeasurementScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "Brug for hjælp?",
+                                    text = "Indsend",
                                     color = Color(0xFF3D3F45),
-                                    fontSize = 13.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Medium,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
@@ -281,7 +299,12 @@ fun MeasurementScreen(
                         } else {
                             MeasureBox(
                                 title = measurement.measurementName,
-                                onClick = { selectedMeasurement = measurement },
+                                onClick = {
+                                    if (selectedMeasurement.measurementId != measurement.measurementId) {
+                                        selectedMeasurementHistory.add(selectedMeasurement.measurementId)
+                                        selectedMeasurement = measurement
+                                    }
+                                },
                                 measurements = measurement,
                                 modifier = Modifier
                                     .weight(1f)
