@@ -31,11 +31,12 @@ import com.example.neveranother.R
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.imePadding
+import androidx.navigation.NavController
 
 /* Jazmin */
 
 @Composable
-fun ProfileShippingScreen() {
+fun ProfileShippingScreen(navController: NavController) {
 
     var name by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
@@ -103,7 +104,7 @@ fun ProfileShippingScreen() {
 
         Button(
             onClick = {
-                // Her kan du senere navigere videre
+                navController.navigate("profile-screen")
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF5A00)
