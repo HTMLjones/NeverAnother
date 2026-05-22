@@ -12,10 +12,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -35,11 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.imePadding
 
-/* Jazmin*/
+/* Jazmin */
 
 @Composable
 fun ProfileScreen(navController: NavController) {
@@ -51,7 +51,7 @@ fun ProfileScreen(navController: NavController) {
             .verticalScroll(rememberScrollState())
             .imePadding()
             .padding(horizontal = 34.dp)
-            .padding(top = 42.dp),
+            .padding(top = 42.dp, bottom = 110.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -93,6 +93,7 @@ fun ProfileScreen(navController: NavController) {
             color = Color.Black,
             modifier = Modifier.padding(top = 8.dp, bottom = 14.dp)
         )
+
         Spacer(modifier = Modifier.height(15.dp))
 
         OrderRow(
@@ -122,8 +123,19 @@ fun ProfileScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            OrangeButton(text = "Dine Mål")
-            OrangeButton(text = "Mål selv")
+            OrangeButton(
+                text = "Dine Mål",
+                onClick = {
+                    navController.navigate("profile-measurements-screen")
+                }
+            )
+
+            OrangeButton(
+                text = "Mål selv",
+                onClick = {
+                    navController.navigate("measurement-screen")
+                }
+            )
         }
     }
 }
@@ -224,9 +236,12 @@ fun OrderRow(
 }
 
 @Composable
-fun OrangeButton(text: String) {
+fun OrangeButton(
+    text: String,
+    onClick: () -> Unit
+) {
     Button(
-        onClick = { },
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFFFF5A00)
         ),

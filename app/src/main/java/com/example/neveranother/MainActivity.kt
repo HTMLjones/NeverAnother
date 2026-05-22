@@ -19,12 +19,15 @@ import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.GuideScreen
 import com.example.neveranother.pages.HomeScreen
+import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ProfileShippingScreen
 import com.example.neveranother.pages.MeasurementScreen
+import com.example.neveranother.pages.ProfileGiftCardScreen
 import com.example.neveranother.pages.ProfileMeasurementsScreen
 import com.example.neveranother.pages.ProfileStartScreen
 import com.example.neveranother.pages.ResultScreen
+import com.example.neveranother.pages.registerProfileScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "result-screen",
+                    startDestination = "home-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -54,19 +57,62 @@ class MainActivity : ComponentActivity() {
                         ProfileScreen(navController)
                     }
                     composable(route = "profile-shipping-screen") {
-                        ProfileShippingScreen()
+                        ProfileShippingScreen(navController)
                     }
-                    composable(route = "profile-screen") {
+
+                    //Profile
+                    composable(route = "profile-start-screen") {
                         ProfileStartScreen(
                             navController =
                                 navController
                         )
                     }
+
+                    //Profil opsæt
+                    composable(route = "register") {
+                        registerProfileScreen(
+                            navController=
+                                navController
+                        )
+                    }
+
+                    //Profile login
+                    composable(route = "Login") {
+                        LoginScreen(
+                            navController =
+                                navController
+                        )
+                    }
+
+                    //Profil
+                    composable(route = "profile-screen") {
+                        ProfileScreen(
+                            navController =
+                            navController
+                        )
+                    }
+                    composable(route= "shipping") {
+                        ProfileShippingScreen(
+                            navController =
+                                navController
+                        )
+                    }
+                    composable("profile-measurements-screen") {
+                        ProfileMeasurementsScreen(navController)
+                    }
+
+                    composable("measurement-screen") {
+                        MeasurementScreen(navController)
+                    }
+
+                    composable("gavekort"){
+                        ProfileGiftCardScreen(navController)
+                    }
+
                     //Measurement start screen
                     composable("measure-screen") {
                         MeasurementScreen(
-                            navController =
-                                navController
+                            navController = navController
                         )
                     }
                     composable("result-screen") {

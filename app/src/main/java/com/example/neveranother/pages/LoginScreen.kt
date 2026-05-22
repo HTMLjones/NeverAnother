@@ -36,11 +36,13 @@ import com.example.neveranother.R
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.imePadding
+import androidx.navigation.NavController
+import com.example.neveranother.classes.controller.ProfilController
 
 /*Jazmin*/
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -110,7 +112,7 @@ fun LoginScreen() {
 
             Button(
                 onClick = {
-                    // Her kan navigation til næste side komme senere
+                    navController.navigate("profile-screen")
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = orange

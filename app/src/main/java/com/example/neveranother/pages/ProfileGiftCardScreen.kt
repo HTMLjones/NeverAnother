@@ -27,12 +27,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.neveranother.R
 
-@Preview
 @Composable
 //Jonas Mørk Nielsen
-fun ProfileGiftCardScreen() {
+fun ProfileGiftCardScreen(navController: NavController) {
 
     var giftcard by remember { mutableStateOf("") }
 
@@ -80,7 +80,7 @@ fun ProfileGiftCardScreen() {
         Spacer(Modifier.height(20.dp))
 
         Button(
-            onClick = { },
+            onClick = {navController.navigate("profile-screen") },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF6A00)
