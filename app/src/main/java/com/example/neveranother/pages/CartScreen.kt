@@ -1,5 +1,6 @@
 package com.example.neveranother.pages
 
+import android.R.attr.divider
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -171,7 +173,13 @@ fun CartScreen() {
                     }
                 }
 
-
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            color = Color(0xFFFF6A00),
+            thickness = 1.dp
+        )
         // Segment 3: Profil information
         Column(
             modifier = Modifier
@@ -207,7 +215,13 @@ fun CartScreen() {
                 Text(text = "Eksempelvej 12, 2100 København Ø", fontSize = 14.sp, color = Color.Black)
             }
         }
-
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            color = Color(0xFFFF6A00),
+            thickness = 1.dp
+        )
         // Segment 4: Pris og subtotal
         Column(
             modifier = Modifier
@@ -264,7 +278,7 @@ fun CartScreen() {
                 )
             ) {
                 Text(
-                    text = "Skab din BH",
+                    text = "Betal nu",
                     fontSize = 18.sp
                 )
             }

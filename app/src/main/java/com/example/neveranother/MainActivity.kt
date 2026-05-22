@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "cart-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
