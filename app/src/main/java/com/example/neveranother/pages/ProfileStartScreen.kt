@@ -52,7 +52,7 @@ fun ProfileStartScreen(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate("register-screen")
+                navController.navigate("register")
             },
             modifier = Modifier
                 .width(255.dp)
@@ -81,7 +81,7 @@ fun ProfileStartScreen(navController: NavController) {
 
         Row(
             modifier = Modifier.clickable {
-                navController.navigate("login-screen")
+                navController.navigate("Login")
             },
             horizontalArrangement = Arrangement.Center
         ) {

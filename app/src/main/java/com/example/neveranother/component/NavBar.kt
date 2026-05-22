@@ -87,7 +87,7 @@ fun BottomNavBar(navController: NavController) {
         NavigationBarItem(
             selected = currentRoute == "profile-screen",
             onClick = {
-                navController.navigate("profile-screen") { launchSingleTop = true }
+                navController.navigate("profile-start-screen") { launchSingleTop = true }
             },
             icon = {
                 Icon(
