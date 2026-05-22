@@ -1,28 +1,19 @@
 package com.example.neveranother.pages
 
-import android.widget.Space
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,23 +29,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.neveranother.R
 
-
 @Preview
 @Composable
-// Jonas Mørk Nielsen
-fun registerProfileScreen() {
+//Jonas Mørk Nielsen
+fun profileGiftCard() {
+
+    var giftcard by remember { mutableStateOf("") }
 
     val OrangeColor = Color(0xFFFF5F00)
 
-    var email by remember { mutableStateOf("") }
-
-    var adgangskode by remember { mutableStateOf("") }
-
     val krav = listOf(
-        "Mindst 8 tegn",
-        "Et stort bogstav",
-        "Et tal",
-        "Et special tegn (! @ & % # =)")
+        "Min. 10 tegn",
+        "Kun tal og bogstaver (A-Z, 0-9)",
+        "Ingen mellemrum",
+        "Et special tegn (f.eks. ! @ & % # =)")
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
@@ -66,31 +54,15 @@ fun registerProfileScreen() {
                 .requiredSize(390.dp)
         )
 
-        Spacer(Modifier.height(30.dp))
+        Spacer(Modifier.height(100.dp))
 
-        Text("E-mail")
-
-        Spacer(Modifier.height(10.dp))
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            placeholder = { Text("Email@gmail.com") },
-            shape = RoundedCornerShape(3.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = (OrangeColor),
-                unfocusedBorderColor = (OrangeColor)
-            )
-        )
-
-        Spacer(Modifier.height(60.dp))
-
-        Text("Adgangskode")
+        Text("Gavekort")
 
         Spacer(Modifier.height(10.dp))
         OutlinedTextField(
-            value = adgangskode,
-            onValueChange = { adgangskode = it },
-            placeholder = { Text("Password") },
+            value = giftcard,
+            onValueChange = { giftcard = it },
+            placeholder = { Text("Indtast gavekort her!") },
             shape = RoundedCornerShape(3.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = (OrangeColor),
@@ -104,6 +76,7 @@ fun registerProfileScreen() {
             krav.forEach { Text(text = "✓ $it") }
         }
 
+
         Spacer(Modifier.height(20.dp))
 
         Button(
@@ -116,7 +89,7 @@ fun registerProfileScreen() {
                 .height(55.dp)
         ) {
             Text(
-                text = "Fortsæt",
+                text = "Indløs",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
@@ -124,4 +97,3 @@ fun registerProfileScreen() {
         }
     }
 }
-

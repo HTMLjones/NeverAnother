@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,6 +19,14 @@ import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.GuideScreen
 import com.example.neveranother.pages.HomeScreen
+import com.example.neveranother.pages.LoginScreen
+import com.example.neveranother.pages.ProfileScreen
+import com.example.neveranother.pages.ProfileStart
+import com.example.neveranother.pages.ProfileShippingScreen
+import com.example.neveranother.pages.LoginScreen
+import com.example.neveranother.pages.profileGiftCard
+import com.example.neveranother.pages.profileMeasurements
+import com.example.neveranother.pages.registerProfileScreen
 import com.example.neveranother.pages.MeasurementScreen
 import com.example.neveranother.pages.ProfileScreen
 import com.example.neveranother.pages.ResultScreen
@@ -27,6 +37,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            profileMeasurements()
+          /* val homeViewModel = viewModel<HomeViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
@@ -34,7 +46,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "home-screen",
+                    startDestination = "profile-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -45,8 +57,13 @@ class MainActivity : ComponentActivity() {
                         HomeScreen(navController)
                     }
                     composable("profile-screen") {
-                        ProfileScreen()
+                        ProfileScreen(navController)
                     }
+                    composable(route = "profile-shipping-screen") {
+                        ProfileShippingScreen()
+                    }
+
+
                     //Measurement start screen
                     composable("measure-screen") {
                         MeasurementScreen(
@@ -64,7 +81,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-            }
+            }*/
         }
     }
 }
