@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "result-screen",
+                    startDestination = "home-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     //Home screen
@@ -61,8 +61,7 @@ class MainActivity : ComponentActivity() {
                     //Measurement start screen
                     composable("measure-screen") {
                         MeasurementScreen(
-                            navController =
-                                navController
+                            navController = navController
                         )
                     }
                     composable("result-screen") {
