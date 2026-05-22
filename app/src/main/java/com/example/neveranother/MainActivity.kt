@@ -10,26 +10,25 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.neveranother.classes.viewModel.HomeViewModel
+import com.example.neveranother.classes.viewModel.ProfilViewModel
 import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.pages.CartScreen
 import com.example.neveranother.pages.GuideScreen
 import com.example.neveranother.pages.HomeScreen
 import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileScreen
-import com.example.neveranother.pages.ProfileStart
 import com.example.neveranother.pages.ProfileShippingScreen
-import com.example.neveranother.pages.LoginScreen
-import com.example.neveranother.pages.profileGiftCard
-import com.example.neveranother.pages.profileMeasurements
-import com.example.neveranother.pages.registerProfileScreen
 import com.example.neveranother.pages.MeasurementScreen
-import com.example.neveranother.pages.ProfileScreen
+import com.example.neveranother.pages.ProfileGiftCardScreen
+import com.example.neveranother.pages.ProfileMeasurementsScreen
+import com.example.neveranother.pages.ProfileStartScreen
 import com.example.neveranother.pages.ResultScreen
+import com.example.neveranother.pages.registerProfileScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -37,8 +36,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            profileMeasurements()
-          /* val homeViewModel = viewModel<HomeViewModel>()
+            val homeViewModel = viewModel<HomeViewModel>()
+            val profilViewModel = viewModel<ProfilViewModel>()
             val navController = rememberNavController()
             Scaffold(
                 containerColor = Color(0xFFFFFFFF),
@@ -46,10 +45,9 @@ class MainActivity : ComponentActivity() {
                 bottomBar = { BottomNavBar(navController) }) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = "profile-screen",
+                    startDestination = "home-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
-                    //Home screen
                     composable("cart-screen") {
                         CartScreen()
                     }
@@ -57,31 +55,43 @@ class MainActivity : ComponentActivity() {
                         HomeScreen(navController)
                     }
                     composable("profile-screen") {
-                        ProfileScreen(navController)
+                        ProfileScreen(navController, profilViewModel)
                     }
                     composable(route = "profile-shipping-screen") {
-                        ProfileShippingScreen()
+                        ProfileShippingScreen(navController, profilViewModel)
                     }
-
-
-                    //Measurement start screen
+                    composable(route = "profile-start-screen") {
+                        ProfileStartScreen(navController = navController)
+                    }
+                    composable(route = "register") {
+                        registerProfileScreen(navController = navController, viewModel = profilViewModel)
+                    }
+                    composable(route = "Login") {
+                        LoginScreen(navController = navController, viewModel = profilViewModel)
+                    }
+                    composable(route = "shipping") {
+                        ProfileShippingScreen(navController = navController, viewModel = profilViewModel)
+                    }
+                    composable("profile-measurements-screen") {
+                        ProfileMeasurementsScreen(navController, profilViewModel)
+                    }
+                    composable("measurement-screen") {
+                        MeasurementScreen(navController)
+                    }
+                    composable("gavekort") {
+                        ProfileGiftCardScreen(navController, profilViewModel)
+                    }
                     composable("measure-screen") {
-                        MeasurementScreen(
-                            navController =
-                                navController
-                        )
+                        MeasurementScreen(navController = navController)
                     }
                     composable("result-screen") {
                         ResultScreen()
                     }
                     composable("guide-screen") {
-
-                        GuideScreen(
-                            navController = navController
-                        )
+                        GuideScreen(navController = navController)
                     }
                 }
-            }*/
+            }
         }
     }
 }
