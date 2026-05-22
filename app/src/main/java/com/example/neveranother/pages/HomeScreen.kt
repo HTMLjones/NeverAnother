@@ -58,7 +58,7 @@ fun HomeScreen(navController: NavController) {
         ExoPlayer.Builder(context).build().apply {
             val videoUri = //Mangler video i \res\raw\homescreenvideo.. derfor har jeg lagt anden video ind som placeholder til videoen er med i git
                 //Uri.parse("android.resource://${context.packageName}/${R.raw.neveranother_homescreenvideoforbedret}")
-                Uri.parse("android.resource://${context.packageName}/${R.raw.underb}")
+                Uri.parse("android.resource://${context.packageName}/${R.raw.homescreenvideo}")
 
             val mediaItem = MediaItem.fromUri(videoUri)
             setMediaItem(mediaItem)
@@ -99,18 +99,17 @@ fun HomeScreen(navController: NavController) {
             // men en res raw, hvilket skulle gøres lidt anderledes især til kode delen.
             // Her bruges der ikke image(), painter = painterResource()
             Card(
-                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                 .fillMaxWidth()
                 .height(420.dp)
-            ) {
+                .border(2.dp,Color(0xFFFF6A00), RoundedCornerShape(12.dp))
 
+            ) {
                 Box(
+
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(420.dp)
-                        .border(2.dp,Color(0xFFFF6A00))
-
                 )  {
                     AndroidView(
                         factory = {
