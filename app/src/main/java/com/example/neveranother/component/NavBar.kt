@@ -1,11 +1,9 @@
 package com.example.neveranother.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -13,14 +11,16 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.neveranother.R
 
-
+//Simon
 @Composable
 fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -34,16 +34,16 @@ fun BottomNavBar(navController: NavController) {
         tonalElevation = 2.dp,
         windowInsets = WindowInsets(0.dp),
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 5.dp)
-            .background(
-                color = Color.White,
-                shape = RoundedCornerShape(10.dp)
-            )
-            .border(
-                width = 0.1.dp,
-                color = Color.Black,
-                shape = RoundedCornerShape(10.dp)
-            )
+            .height(68.dp)
+            .background(Color.White)
+            .drawBehind {
+                drawLine(
+                    color = Color(0xFFB8B8B8),
+                    start = Offset(0f, 0f),
+                    end = Offset(size.width, 0f),
+                    strokeWidth = 1.dp.toPx()
+                )
+            }
     ) {
         // ========================= Cart ==============================
         NavigationBarItem(
@@ -87,7 +87,7 @@ fun BottomNavBar(navController: NavController) {
         NavigationBarItem(
             selected = currentRoute == "profile-screen",
             onClick = {
-                navController.navigate("profile-screen") { launchSingleTop = true }
+                navController.navigate("profile-start-screen") { launchSingleTop = true }
             },
             icon = {
                 Icon(
