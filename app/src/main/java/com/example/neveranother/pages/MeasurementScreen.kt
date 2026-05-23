@@ -54,11 +54,6 @@ fun MeasurementScreen(
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
     val measurements = measureViewModel.measurements.take(6)
 
-    /*TODO lav en starter istedet for measurements.first, så den kan start på nummer 0
-    *  Der mangler nemlig stadig en forside, eller ihvertfald den startside som vi har i figma
-    *
-    * */
-
     /*Input fra brugeren, bliver ført ind i measurementValue, men siden vi kører med predefined
      list of measurements fra MeasureViewModel, dette forestiller jeg
      mig bliver fikset når vi får sat databasen op, da værdierne bliver hentet fra objektet,
