@@ -39,10 +39,7 @@ fun registerProfileScreen(navController: NavController, viewModel: ProfilViewMod
     val OrangeColor = Color(0xFFFF5F00)
 
     val krav = listOf(
-        "Mindst 8 tegn",
-        "Et stort bogstav",
-        "Et tal",
-        "Et special tegn (! @ & % # =)"
+        "Mindst 8 tegn", "Et stort bogstav", "Et tal", "Et special tegn (! @ & % # =)"
     )
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -83,8 +80,7 @@ fun registerProfileScreen(navController: NavController, viewModel: ProfilViewMod
             placeholder = { Text("Email@gmail.com") },
             shape = RoundedCornerShape(3.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = OrangeColor,
-                unfocusedBorderColor = OrangeColor
+                focusedBorderColor = OrangeColor, unfocusedBorderColor = OrangeColor
             )
         )
 
@@ -100,8 +96,7 @@ fun registerProfileScreen(navController: NavController, viewModel: ProfilViewMod
             placeholder = { Text("Password") },
             shape = RoundedCornerShape(3.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = OrangeColor,
-                unfocusedBorderColor = OrangeColor
+                focusedBorderColor = OrangeColor, unfocusedBorderColor = OrangeColor
             )
         )
 
@@ -119,7 +114,8 @@ fun registerProfileScreen(navController: NavController, viewModel: ProfilViewMod
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF6A00)
             ),
-            modifier = Modifier.height(55.dp)
+            modifier = Modifier
+                .height(55.dp)
         ) {
             Text(
                 text = "Fortsæt",

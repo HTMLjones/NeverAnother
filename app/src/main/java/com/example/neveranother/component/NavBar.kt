@@ -20,7 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.neveranother.R
 
-
+//Simon
 @Composable
 fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -87,7 +87,7 @@ fun BottomNavBar(navController: NavController) {
         NavigationBarItem(
             selected = currentRoute == "profile-screen",
             onClick = {
-                navController.navigate("profile-screen") { launchSingleTop = true }
+                navController.navigate("profile-start-screen") { launchSingleTop = true }
             },
             icon = {
                 Icon(

@@ -151,8 +151,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfilViewModel) {
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OrangeButton(
                 text = "Dine Mål",
@@ -168,15 +167,14 @@ fun ProfileScreen(navController: NavController, viewModel: ProfilViewModel) {
 
 @Composable
 fun ProfileInputRow(
-    label: String,
-    placeholder: String,
+    label: String, placeholder: String,
     value: String,
     onValueChange: (String) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
+
         Text(
             text = label,
             fontSize = 22.sp,
@@ -198,7 +196,7 @@ fun ProfileInputRow(
         ) {
             BasicTextField(
                 value = value,
-                onValueChange = onValueChange,
+                onValueChange = { value = it },
                 singleLine = true,
                 textStyle = TextStyle(fontSize = 13.sp, color = Color.Black),
                 decorationBox = { innerTextField ->
@@ -206,8 +204,7 @@ fun ProfileInputRow(
                         Text(text = placeholder, color = Color.LightGray, fontSize = 13.sp)
                     }
                     innerTextField()
-                }
-            )
+                })
         }
     }
 }
@@ -247,15 +244,24 @@ fun OrderRow(label: String, buttonText: String) {
 }
 
 @Composable
-fun OrangeButton(text: String, onClick: () -> Unit) {
+fun OrangeButton(
+    text: String, onClick: () -> Unit
+) {
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5A00)),
         shape = RoundedCornerShape(50.dp),
         contentPadding = PaddingValues(0.dp),
-        modifier = Modifier.width(135.dp).height(45.dp)
+        modifier = Modifier
+            .width(135.dp)
+            .height(45.dp)
     ) {
-        Text(text = text, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+        Text(
+            text = text,
+            color = Color.White,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 

@@ -2,17 +2,23 @@ package com.example.neveranother.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,16 +41,13 @@ fun GuideScreen(
     navController: NavController
 ) {
 
-    val guideViewModel =
-        viewModel<GuideViewModel>()
+    val guideViewModel = viewModel<GuideViewModel>()
 
 
-    val guides =
-        guideViewModel.guides.take(4)
+    val guides = guideViewModel.guides.take(4)
 
 
-    val guideValues =
-        guideViewModel.measurementValues
+    val guideValues = guideViewModel.measurementValues
 
 
     var selectedGuide by remember {
@@ -53,11 +56,9 @@ fun GuideScreen(
 
             guides.find {
 
-                it.measurementId ==
-                        GuideViewModel.selectedGuideId
+                it.measurementId == GuideViewModel.selectedGuideId
 
-            } ?: guides.first()
-        )
+            } ?: guides.first())
     }
 
 
@@ -72,45 +73,36 @@ fun GuideScreen(
         */
 
         Row(
-            verticalAlignment =
-                Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
             Box(
 
-                modifier =
-                    Modifier
-                        .size(56.dp)
-                        .clickable {
+                modifier = Modifier
+                    .size(56.dp)
+                    .clickable {
 
-                            navController.popBackStack()
-                        },
+                        navController.popBackStack()
+                    },
 
-                contentAlignment =
-                    Alignment.Center
+                contentAlignment = Alignment.Center
 
-            ){
+            ) {
 
                 Icon(
 
-                    imageVector =
-                        Icons.Default.ArrowBack,
+                    imageVector = Icons.Default.ArrowBack,
 
-                    contentDescription =
-                        "Back",
+                    contentDescription = "Back",
 
-                    modifier =
-                        Modifier.size(
-                            30.dp
-                        )
+                    modifier = Modifier.size(
+                        30.dp
+                    )
                 )
             }
 
             Text(
-                "Video Guide",
-                fontSize = 28.sp,
-                fontWeight =
-                    FontWeight.Bold
+                "Video Guide", fontSize = 28.sp, fontWeight = FontWeight.Bold
             )
         }
 
@@ -135,15 +127,13 @@ fun GuideScreen(
         Row {
 
             Image(
-                painter =
-                    painterResource(
-                        selectedGuide.illustration
-                    ),
+                painter = painterResource(
+                    selectedGuide.illustration
+                ),
 
                 contentDescription = null,
 
-                modifier =
-                    Modifier.size(125.dp)
+                modifier = Modifier.size(125.dp)
             )
 
 
@@ -159,8 +149,7 @@ fun GuideScreen(
 
                     fontSize = 24.sp,
 
-                    fontWeight =
-                        FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold
                 )
 
                 Text(
@@ -185,16 +174,11 @@ fun GuideScreen(
 
             OutlinedTextField(
 
-                value =
-                    guideValues[
-                        selectedGuide.measurementId
-                    ] ?: "",
+                value = guideValues[selectedGuide.measurementId] ?: "",
 
                 onValueChange = {
 
-                    guideValues[
-                        selectedGuide.measurementId
-                    ] = it
+                    guideValues[selectedGuide.measurementId] = it
                 },
 
                 suffix = {
@@ -202,8 +186,7 @@ fun GuideScreen(
                     Text("CM")
                 },
 
-                modifier =
-                    Modifier.weight(1f)
+                modifier = Modifier.weight(1f)
             )
 
 
@@ -213,8 +196,7 @@ fun GuideScreen(
 
 
             Button(
-                onClick ={}
-            ) {
+                onClick = {}) {
 
                 Text("Fortsæt")
             }
@@ -233,8 +215,7 @@ fun GuideScreen(
         Row {
 
             Icon(
-                Icons.Default.Info,
-                null
+                Icons.Default.Info, null
             )
 
             Spacer(
