@@ -44,8 +44,7 @@ import com.example.neveranother.classes.viewModel.ProfilViewModel
 /* Jazmin */
 
 @Composable
-fun ProfileScreen(navController: NavController, viewModel: ProfilViewModel) {
-
+fun ProfileScreen(navController: NavController, profilViewModel: ProfilViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -90,32 +89,32 @@ fun ProfileScreen(navController: NavController, viewModel: ProfilViewModel) {
         ProfileInputRow(
             label = "Navn",
             placeholder = "Fulde navn",
-            value = viewModel.navn,
-            onValueChange = { viewModel.navn = it }
+            value = profilViewModel.navn,
+            onValueChange = { profilViewModel.navn = it }
         )
         Spacer(modifier = Modifier.height(20.dp))
 
         ProfileInputRow(
             label = "Adresse",
             placeholder = "Vej, By",
-            value = viewModel.adresse,
-            onValueChange = { viewModel.adresse = it }
+            value = profilViewModel.adresse,
+            onValueChange = { profilViewModel.adresse = it }
         )
         Spacer(modifier = Modifier.height(20.dp))
 
         ProfileInputRow(
             label = "Telefon",
             placeholder = "+45 00 00 00 00",
-            value = viewModel.telefon,
-            onValueChange = { viewModel.telefon = it }
+            value = profilViewModel.telefon,
+            onValueChange = { profilViewModel.telefon = it }
         )
         Spacer(modifier = Modifier.height(20.dp))
 
         ProfileInputRow(
             label = "Email",
             placeholder = "din@email.com",
-            value = viewModel.email,
-            onValueChange = { viewModel.email = it }
+            value = profilViewModel.email,
+            onValueChange = { profilViewModel.email = it }
         )
 
         Spacer(modifier = Modifier.height(50.dp))
@@ -167,7 +166,8 @@ fun ProfileScreen(navController: NavController, viewModel: ProfilViewModel) {
 
 @Composable
 fun ProfileInputRow(
-    label: String, placeholder: String,
+    label: String,
+    placeholder: String,
     value: String,
     onValueChange: (String) -> Unit
 ) {
@@ -196,7 +196,7 @@ fun ProfileInputRow(
         ) {
             BasicTextField(
                 value = value,
-                onValueChange = { value = it },
+                onValueChange = { onValueChange(it) },
                 singleLine = true,
                 textStyle = TextStyle(fontSize = 13.sp, color = Color.Black),
                 decorationBox = { innerTextField ->
