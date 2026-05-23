@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
 
-/*Lavet Af Jazmin*/
+/* Jazmin */
 
 @Composable
 fun ProfileStartScreen(navController: NavController) {
@@ -52,42 +52,37 @@ fun ProfileStartScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(240.dp))
 
         Button(
-            onClick = {
-                navController.navigate("register")
-            },
+            onClick = { navController.navigate("register") }, // ← rettet
             modifier = Modifier
                 .width(255.dp)
                 .height(48.dp),
             shape = RoundedCornerShape(50.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFF5A00), contentColor = Color.White
+                containerColor = Color(0xFFFF5A00),
+                contentColor = Color.White
             )
         ) {
-            Text(
-                text = "Opsæt din profil", fontSize = 17.sp
-            )
+            Text(text = "Opsæt din profil", fontSize = 17.sp)
         }
 
         Spacer(modifier = Modifier.height(18.dp))
 
         Text(
-            text = "Har du allerede en bruger?", fontSize = 15.sp, color = Color.Black
+            text = "Har du allerede en bruger?",
+            fontSize = 15.sp,
+            color = Color.Black
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(
             modifier = Modifier.clickable {
-                navController.navigate("Login")
-            }, horizontalArrangement = Arrangement.Center
+                navController.navigate("Login") // ← rettet
+            },
+            horizontalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Log ind ", fontSize = 15.sp, color = Color.Black
-            )
-
-            Text(
-                text = "her", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Black
-            )
+            Text(text = "Log ind ", fontSize = 15.sp, color = Color.Black)
+            Text(text = "her", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Black)
         }
     }
 }
