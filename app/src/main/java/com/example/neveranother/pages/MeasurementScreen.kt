@@ -1,27 +1,28 @@
 package com.example.neveranother.pages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,33 +34,25 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.neveranother.classes.viewModel.GuideViewModel
 import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.component.MeasureBox
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.IconButton
-import com.example.neveranother.classes.viewModel.GuideViewModel
 
+//Simon
 @Composable
 fun MeasurementScreen(
-    navController:
-    NavController
+    navController: NavController
 ) {
     val measureViewModel = viewModel<MeasureViewModel>()
     //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
     val measurements = measureViewModel.measurements.take(6)
-
-
-
-    /*TODO lav en starter istedet for measurements.first, så den kan start på nummer 0
-    *  Der mangler nemlig stadig en forside, eller ihvertfald den startside som vi har i figma
-    *
-    * */
 
     /*Input fra brugeren, bliver ført ind i measurementValue, men siden vi kører med predefined
      list of measurements fra MeasureViewModel, dette forestiller jeg
@@ -67,9 +60,14 @@ fun MeasurementScreen(
       som så skal opdateres hver gang der bliver indtastet en ny værdi
       */
     val measurementValues = measureViewModel.measurementValues
-    val guideViewModel =
-        viewModel<GuideViewModel>()
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
+
+/*
+#####Fik en del hjælp af AI her
+Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og dermed ville gå tilbage til homepage
+så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
+ */
+    val selectedMeasurementHistory = remember { mutableListOf<Int>() }
     val measurementRows = measurements.chunked(3)
 
     Column(
@@ -88,8 +86,20 @@ fun MeasurementScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxHeight(),
-                contentAlignment = Alignment.Center
+                    .fillMaxHeight()
+                    .clickable {
+//#####Fortsættelse af AI hjælp her til tilbage knap historik
+                        if (selectedMeasurementHistory.isNotEmpty()) {
+                            val previousMeasurementId =
+                                selectedMeasurementHistory.removeAt(selectedMeasurementHistory.lastIndex)
+                            measurements.firstOrNull { it.measurementId == previousMeasurementId }
+                                ?.let {
+                                    selectedMeasurement = it
+                                }
+                        } else {
+                            navController.popBackStack()
+                        }
+                    }, contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
@@ -139,7 +149,7 @@ fun MeasurementScreen(
             )
         }
 
-        // Segment 4: measurementDescription
+        //Simon Segment 4: measurementDescription
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -154,16 +164,18 @@ fun MeasurementScreen(
             )
         }
 
-        // Segment 5: inputfelt
+        //Simon Segment 5: inputfelt
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
-            contentAlignment = Alignment.BottomCenter
+                .weight(1f), contentAlignment = Alignment.BottomCenter
         ) {
             OutlinedTextField(
+                //Her er der også fejl ift measurement Value
                 value = measurementValues[selectedMeasurement.measurementId] ?: "",
-                onValueChange = { measurementValues[selectedMeasurement.measurementId] = it },//it refers to value
+                onValueChange = {
+                    measurementValues[selectedMeasurement.measurementId] = it
+                },//it refers to value
                 modifier = Modifier.fillMaxWidth(0.5f),
                 placeholder = {
                     Text(
@@ -199,18 +211,15 @@ fun MeasurementScreen(
                     unfocusedContainerColor = Color.White
                 )
             )
+            //Jannik
             IconButton(
-                modifier =
-                    Modifier
-                        .offset(
-                            x = 130.dp,
-                            y = (-2).dp
-                        ),
+                modifier = Modifier.offset(
+                        x = 130.dp, y = (-2).dp
+                    ),
 
                 onClick = {
 
-                    GuideViewModel.selectedGuideId =
-                        selectedMeasurement.measurementId
+                    GuideViewModel.selectedGuideId = selectedMeasurement.measurementId
 
 
                     navController.navigate(
@@ -222,20 +231,17 @@ fun MeasurementScreen(
 
                 Icon(
 
-                    imageVector =
-                        Icons.Default.Info,
+                    imageVector = Icons.Default.Info,
 
-                    contentDescription =
-                        "Guide",
+                    contentDescription = "Guide",
 
-                    tint =
-                        Color(0xFFE07B39)
+                    tint = Color(0xFFE07B39)
                 )
             }
         }
 
 
-        // Segment 6: bokse (2 rækker x 3 kolonner)
+        //Simon Segment 6: bokse (2 rækker x 3 kolonner)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -257,9 +263,12 @@ fun MeasurementScreen(
                                     .aspectRatio(1.35f)
                                     .clip(RoundedCornerShape(10.dp))
                                     .background(Color(0xFFDCD8CB))
-                                    .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(10.dp))
-                                    .clickable { /* Knap navigation */ },
-                                /*
+                                    .border(
+                                        width = 2.dp,
+                                        color = Color(0xFF8A887F),
+                                        shape = RoundedCornerShape(10.dp)
+                                    )
+                                    .clickable { navController.navigate("result-screen") },/*
                                 Tænker vi skal tilføje en guidepath til hvert measure sådan så vi kan
                                 lave selectedMeasurement = measurement.measurementGuidePath agtigt for navigation
                                 men kigger på det i morgen.
@@ -270,9 +279,9 @@ fun MeasurementScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "Brug for hjælp?",
+                                    text = "Indsend",
                                     color = Color(0xFF3D3F45),
-                                    fontSize = 13.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Medium,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
@@ -281,7 +290,12 @@ fun MeasurementScreen(
                         } else {
                             MeasureBox(
                                 title = measurement.measurementName,
-                                onClick = { selectedMeasurement = measurement },
+                                onClick = {
+                                    if (selectedMeasurement.measurementId != measurement.measurementId) {
+                                        selectedMeasurementHistory.add(selectedMeasurement.measurementId)
+                                        selectedMeasurement = measurement
+                                    }
+                                },
                                 measurements = measurement,
                                 modifier = Modifier
                                     .weight(1f)

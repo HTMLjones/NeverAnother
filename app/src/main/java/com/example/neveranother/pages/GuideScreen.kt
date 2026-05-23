@@ -88,7 +88,9 @@ fun GuideScreen(
 
                 contentAlignment =
                     Alignment.Center
+
             ){
+
                 Icon(
                     imageVector =
                         Icons.Default.ArrowBack,
@@ -118,12 +120,17 @@ fun GuideScreen(
         VideoPlayer(
             videoRes = selectedGuide.video
         )
+
+
         Spacer(Modifier.height(24.dp))
+
 
         /*
         DRAWED GUIDE + TEXT
         */
+
         Row {
+
             Image(
                 painter =
                     painterResource(
@@ -134,33 +141,45 @@ fun GuideScreen(
                     Modifier.size(125.dp)
             )
 
+
             Spacer(
                 Modifier.width(12.dp)
             )
 
+
             Column {
+
                 Text(
                     selectedGuide.title,
+
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.SemiBold
+
+                    fontWeight =
+                        FontWeight.SemiBold
                 )
+
                 Text(
                     selectedGuide.explanation
                 )
             }
         }
 
+
         Divider(
             Modifier.padding(
                 vertical = 24.dp
             )
         )
+
+
         /*
         INPUT + BUTTON
         */
 
         Row {
+
             OutlinedTextField(
+
                 value =
                     guideValues[
                         selectedGuide.measurementId
@@ -173,11 +192,11 @@ fun GuideScreen(
                 },
 
                 suffix = {
+
                     Text("CM")
                 },
 
-                modifier =
-                    Modifier.weight(1f)
+                modifier = Modifier.weight(1f)
             )
 
 
@@ -185,28 +204,36 @@ fun GuideScreen(
                 Modifier.width(12.dp)
             )
 
+
             Button(
                 onClick ={}
             ) {
+
                 Text("Fortsæt")
             }
         }
 
+
         Spacer(
             Modifier.height(24.dp)
         )
+
+
         /*
         INFO SECTION
         */
 
         Row {
+
             Icon(
                 Icons.Default.Info,
                 null
             )
+
             Spacer(
                 Modifier.width(8.dp)
             )
+
             Text(
                 selectedGuide.info
             )

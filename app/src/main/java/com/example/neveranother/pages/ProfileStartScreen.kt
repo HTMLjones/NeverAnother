@@ -1,4 +1,5 @@
 package com.example.neveranother.pages
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
 
-/*Lavet Af Jazmin*/
+/* Jazmin */
 
 @Composable
 fun ProfileStartScreen(navController: NavController) {
@@ -51,9 +52,7 @@ fun ProfileStartScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(240.dp))
 
         Button(
-            onClick = {
-                navController.navigate("register")
-            },
+            onClick = { navController.navigate("register") }, // ← rettet
             modifier = Modifier
                 .width(255.dp)
                 .height(48.dp),
@@ -63,10 +62,7 @@ fun ProfileStartScreen(navController: NavController) {
                 contentColor = Color.White
             )
         ) {
-            Text(
-                text = "Opsæt din profil",
-                fontSize = 17.sp
-            )
+            Text(text = "Opsæt din profil", fontSize = 17.sp)
         }
 
         Spacer(modifier = Modifier.height(18.dp))
@@ -81,22 +77,12 @@ fun ProfileStartScreen(navController: NavController) {
 
         Row(
             modifier = Modifier.clickable {
-                navController.navigate("Login")
+                navController.navigate("Login") // ← rettet
             },
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Log ind ",
-                fontSize = 15.sp,
-                color = Color.Black
-            )
-
-            Text(
-                text = "her",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
+            Text(text = "Log ind ", fontSize = 15.sp, color = Color.Black)
+            Text(text = "her", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Black)
         }
     }
 }

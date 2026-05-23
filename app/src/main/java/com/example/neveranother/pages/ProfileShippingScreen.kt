@@ -2,24 +2,29 @@ package com.example.neveranother.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,22 +32,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.neveranother.R
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.imePadding
 import androidx.navigation.NavController
+import com.example.neveranother.R
+import com.example.neveranother.classes.viewModel.ProfilViewModel
 
 /* Jazmin */
-
 @Composable
-fun ProfileShippingScreen(navController: NavController) {
-
-    var name by remember { mutableStateOf("") }
-    var address by remember { mutableStateOf("") }
-    var addressComponent by remember { mutableStateOf("") }
-    var postalCode by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("") }
+fun ProfileShippingScreen(navController: NavController, viewModel: ProfilViewModel) {
 
     Column(
         modifier = Modifier
@@ -54,6 +50,21 @@ fun ProfileShippingScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
+
+        // ← Tilbage-knap
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .align(Alignment.Start)
+                .clickable { navController.popBackStack() },
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Back",
+                modifier = Modifier.size(30.dp)
+            )
+        }
 
         Image(
             painter = painterResource(id = R.drawable.neveranotherlogo),
@@ -67,45 +78,43 @@ fun ProfileShippingScreen(navController: NavController) {
 
         ShippingInputField(
             title = "Navn",
-            value = name,
+            value = viewModel.navn,
             placeholder = "Fulde navn",
-            onValueChange = { name = it }
+            onValueChange = { viewModel.navn = it }
         )
 
         ShippingInputField(
             title = "Adresse",
-            value = address,
+            value = viewModel.adresse,
             placeholder = "Gade og husnummer",
-            onValueChange = { address = it }
+            onValueChange = { viewModel.adresse = it }
         )
 
         ShippingInputField(
             title = "Adresse Komponent",
-            value = addressComponent,
+            value = viewModel.adresseKomponent,
             placeholder = "Etage/dør",
-            onValueChange = { addressComponent = it }
+            onValueChange = { viewModel.adresseKomponent = it }
         )
 
         ShippingInputField(
             title = "Postnummer",
-            value = postalCode,
+            value = viewModel.postnummer,
             placeholder = "f.eks. 1473",
-            onValueChange = { postalCode = it }
+            onValueChange = { viewModel.postnummer = it }
         )
 
         ShippingInputField(
             title = "Telefon",
-            value = phone,
+            value = viewModel.telefon,
             placeholder = "+45 00 00 00 00",
-            onValueChange = { phone = it }
+            onValueChange = { viewModel.telefon = it }
         )
 
         Spacer(modifier = Modifier.height(22.dp))
 
         Button(
-            onClick = {
-                navController.navigate("profile-screen")
-            },
+            onClick = { navController.navigate("profile-screen") },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFFF5A00)
             ),
@@ -138,17 +147,9 @@ fun ShippingInputField(
     )
 
     OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        placeholder = {
-            Text(
-                text = placeholder,
-                color = Color.Gray,
-                fontSize = 13.sp
-            )
-        },
-        singleLine = true,
-        colors = TextFieldDefaults.colors(
+        value = value, onValueChange = onValueChange, placeholder = {
+            Text(text = placeholder, color = Color.Gray, fontSize = 13.sp)
+        }, singleLine = true, colors = TextFieldDefaults.colors(
             focusedContainerColor = Color(0xFFFAF9F6),
             unfocusedContainerColor = Color(0xFFFAF9F6),
             focusedIndicatorColor = Color(0xFFFF5A00),
@@ -163,4 +164,3 @@ fun ShippingInputField(
 
     Spacer(modifier = Modifier.height(8.dp))
 }
-
