@@ -26,7 +26,7 @@ class MeasureViewModel : ViewModel() {
             measurementId = 3,
             measurementName = "Bryst Volumen Type",
             measurementDescription = "Vælg den type som passer bedst til din brystform.",
-            image = R.drawable.volumetypes
+            image = R.drawable.volumetyperesized
         ), BhMeasurements(
             measurementId = 4,
             measurementName = "Bryst Bredde",

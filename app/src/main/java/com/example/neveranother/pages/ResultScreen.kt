@@ -62,7 +62,7 @@ fun ResultScreen(
                 imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                 contentDescription = "Tilbage knap",
                 tint = primaryText,
-                modifier = Modifier.size(38.dp)
+                modifier = Modifier.size(35.dp)
                     .clickable { navController.popBackStack() }
             )
             Spacer(modifier = Modifier.width(16.dp))
@@ -93,7 +93,7 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Omfang over brystet", fontSize = 14.sp, color = secondaryText)
+                    Text(text = "Omfang over brystet", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = secondaryText)
                     Text(
                         text = "0.00 placeholder",
                         fontSize = 16.sp,
@@ -105,7 +105,7 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Omfang under brystet", fontSize = 14.sp, color = secondaryText)
+                    Text(text = "Omfang under brystet", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = secondaryText)
                     Text(
                         text = "0.00 placeholder",
                         fontSize = 16.sp,
@@ -133,7 +133,7 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Volumen type", fontSize = 14.sp, color = secondaryText)
+                    Text(text = "Volumen type", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = secondaryText)
                     Text(
                         text = "Type selected placeholder",
                         fontSize = 14.sp,
@@ -145,7 +145,7 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Brystbredde", fontSize = 14.sp, color = secondaryText)
+                    Text(text = "Brystbredde", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = secondaryText)
                     Text(
                         text = "0.00 placeholder",
                         fontSize = 16.sp,
@@ -173,7 +173,7 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Bryst højde", fontSize = 14.sp, color = secondaryText)
+                    Text(text = "Bryst højde", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = secondaryText)
                     Text(
                         text = "0.00 placeholder",
                         fontSize = 16.sp,
@@ -209,7 +209,7 @@ fun ResultScreen(
         ) {
             Text(
                 text = "Baseret på dine mål har vi fundet et BH-design, der passer til din krop.",
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 color = secondaryText
             )
         }/*
@@ -238,7 +238,7 @@ fun ResultScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Start forfra",
+                    text = "Gem mine mål",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
