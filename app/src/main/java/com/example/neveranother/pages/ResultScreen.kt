@@ -46,7 +46,7 @@ fun ResultScreen(
     val inputValueOfMeasurement: (Int) -> String = { measurementId: Int ->
         measurementViewModel.measurements[measurementId].getMeasurementValue()
     }
-
+    //Laver disse farve val for nemt at kunne ændre dem til farverne fra brandbooken, hvis det bliver en prioritet
     val backgroundColor = Color(0xFFF5EFE3)
     val headerColor = Color(0xFF2F3136)
     val dividerColor = Color(0xFFD3CBC0)
@@ -279,8 +279,8 @@ fun ResultScreen(
         ) {
 
             /*
-            Havde problemer med Button function, så jeg har brugt box istedet
-            AI hjalp med layoutstyling så det lignede de knapper som var der før
+            Havde problemer med nav til Button function, så jeg har brugt box istedet
+            AI hjalp med layoutstyling så det lignede de knapper som var der før, den foreslog også farve values i starten som jeg så implementerede
              */
             val buttonShape = RoundedCornerShape(8.dp)
             Box(
