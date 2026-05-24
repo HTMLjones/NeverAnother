@@ -44,7 +44,7 @@ fun ResultScreen(
 ) {
     //Ville godt have lavet resultaterne i et forEach loop istedet
     val inputValueOfMeasurement: (Int) -> String = { measurementId: Int ->
-        measurementViewModel.measurements[measurementId].getMeasurementValue() ?: "Ikke udfyldt"
+        measurementViewModel.measurements[measurementId].getMeasurementValue()
     }
 
     val backgroundColor = Color(0xFFF5EFE3)
