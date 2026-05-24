@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -51,20 +50,19 @@ import com.example.neveranother.component.MeasureBox
 //Simon
 @Composable
 fun MeasurementScreen(
-    navController: NavController,
-    measurementViewModel: MeasureViewModel
+    navController: NavController, measurementViewModel: MeasureViewModel
 ) {
     val measurements = measurementViewModel.measurements.take(6)
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
     val measurementRows = measurements.chunked(3)
 
-/*
-#####################Fik en del hjælp af AI til denne selectedMeasurementHistory
-Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og dermed ville gå tilbage til homepage
-så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
- */
+    /*
+    #####################Fik en del hjælp af AI til denne selectedMeasurementHistory
+    Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og dermed ville gå tilbage til homepage
+    så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
+     */
     val selectedMeasurementHistory = remember { mutableListOf<Int>() }
-//#########################
+    //#########################
 
     Column(
         modifier = Modifier
@@ -98,8 +96,7 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
                             navController.popBackStack()
                         }
 //############################ Hertil ########################################
-                    }
-            )
+                    })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Indtast dine mål",
@@ -157,7 +154,8 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1.5f)
-                .padding(top = 10.dp), contentAlignment = Alignment.Center
+                .padding(top = 10.dp),
+            contentAlignment = Alignment.Center
         ) {
             OutlinedTextField(
                 //Her er der også fejl ift measurement Value
@@ -205,8 +203,8 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
             //Jannik
             IconButton(
                 modifier = Modifier.offset(
-                        x = 130.dp, y = (-2).dp
-                    ),
+                    x = 130.dp, y = (-2).dp
+                ),
 
                 onClick = {
 

@@ -51,306 +51,293 @@ fun ResultScreen(
     val headerColor = Color(0xFF2F3136)
     val dividerColor = Color(0xFFD3CBC0)
     val orange = Color(0xFFFF6A00)
-    val textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium, color = Color(0xFF4A4A4A))
+    val textStyle =
+        TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium, color = Color(0xFF4A4A4A))
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    ) {
+        // Segment 1: Overskrift
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp)
+                .padding(start = 24.dp, end = 24.dp, top = 14.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                contentDescription = "Tilbage knap",
+                tint = headerColor,
+                modifier = Modifier
+                    .size(35.dp)
+                    .clickable { navController.popBackStack() })
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = "Her er dine resultater",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = headerColor,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .background(backgroundColor)
+                .fillMaxWidth()
+                .weight(2.6f)
+                .padding(horizontal = 24.dp)
         ) {
-            // Segment 1: Overskrift
+            /*
+            Første row resultater
+             */
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
-                    .padding(start = 24.dp, end = 24.dp, top = 14.dp),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(top = 6.dp),
+                verticalAlignment = Alignment.Top
             ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Tilbage knap",
-                    tint = headerColor,
-                    modifier = Modifier
-                        .size(35.dp)
-                        .clickable { navController.popBackStack() })
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = "Omfang over brystet", style = textStyle
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(0),//Index 0 for første BhMeasurement
+                            style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = "Her er dine resultater",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = headerColor,
-                    modifier = Modifier.fillMaxWidth()
-                )
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = "Omfang under brystet", style = textStyle
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(1), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
+                }
             }
 
-            Column(
+            HorizontalDivider(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(2.6f)
-                    .padding(horizontal = 24.dp)
-            ) {
-                /*
-                Første row resultater
-                 */
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 6.dp),
-                    verticalAlignment = Alignment.Top
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = "Omfang over brystet",
-                            style = textStyle
-                        )
-                        Row(
-                            modifier = Modifier
-                                .padding(top = 18.dp)
-                                .fillMaxWidth(0.8f),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Text(
-                                text = inputValueOfMeasurement(0),//Index 0 for første BhMeasurement
-                                style = textStyle
-                            )
-                            Text(
-                                text = "CM",
-                                style = textStyle
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = "Omfang under brystet",
-                            style = textStyle
-                        )
-                        Row(
-                            modifier = Modifier
-                                .padding(top = 18.dp)
-                                .fillMaxWidth(0.8f),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Text(
-                                text = inputValueOfMeasurement(1),
-                                style = textStyle
-                            )
-                            Text(
-                                text = "CM",
-                                style = textStyle
-                            )
-                        }
-                    }
-                }
-
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 18.dp),
-                    color = dividerColor,
-                    thickness = 1.dp
-                )/*
+                    .padding(top = 18.dp),
+                color = dividerColor,
+                thickness = 1.dp
+            )/*
             Anden row resultater
              */
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 18.dp),
-                    verticalAlignment = Alignment.Top
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 18.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
                 ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Volumen type", style = textStyle
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Text(
-                            text = "Volumen type",
-                            style = textStyle
+                            text = inputValueOfMeasurement(2), style = textStyle
                         )
-                        Row(
-                            modifier = Modifier
-                                .padding(top = 18.dp)
-                                .fillMaxWidth(0.8f),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Text(
-                                text = inputValueOfMeasurement(2),
-                                style = textStyle
-                            )
-                            Text(
-                                text = "CM",
-                                style = textStyle
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
                         Text(
-                            text = "Brystbredde",
-                            style = textStyle
+                            text = "CM", style = textStyle
                         )
-                        Row(
-                            modifier = Modifier
-                                .padding(top = 18.dp)
-                                .fillMaxWidth(0.8f),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Text(
-                                text = inputValueOfMeasurement(3),
-                                style = textStyle
-                            )
-                            Text(
-                                text = "CM",
-                                style = textStyle
-                            )
-                        }
                     }
                 }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = "Brystbredde", style = textStyle
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(3), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
+                }
+            }
 
-                HorizontalDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 18.dp),
-                    color = dividerColor,
-                    thickness = 1.dp
-                )/*
+            HorizontalDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 18.dp),
+                color = dividerColor,
+                thickness = 1.dp
+            )/*
             Tredje row resultater
              */
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 18.dp),
-                    verticalAlignment = Alignment.Top
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 18.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
                 ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "Bryst højde", style = textStyle
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Text(
-                            text = "Bryst højde",
-                            style = textStyle
+                            text = inputValueOfMeasurement(4), style = textStyle
                         )
-                        Row(
-                            modifier = Modifier
-                                .padding(top = 18.dp)
-                                .fillMaxWidth(0.8f),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Text(
-                                text = inputValueOfMeasurement(4),
-                                style = textStyle
-                            )
-                            Text(
-                                text = "CM",
-                                style = textStyle
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
-                        contentAlignment = Alignment.CenterEnd,
-
-                        ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.logoudentekst),
-                            contentDescription = "Logo",
-                            contentScale = ContentScale.Fit,
-                            modifier = Modifier.fillMaxSize()
+                        Text(
+                            text = "CM", style = textStyle
                         )
                     }
                 }
-            }/*
-        Tekst under logo
-         */
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(0.55f)
-                    .padding(horizontal = 24.dp)
-                    .padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Baseret på dine mål har vi fundet et BH-design, der passer til din krop.",
-                    fontSize = 16.sp,
-                    color = textStyle.color
-                )
-            }/*
-        Knapperne
-        */
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .padding(horizontal = 22.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                /*
-                Havde problemer med Button function, så jeg har brugt box istedet
-                AI hjalp med layoutstyling så det lignede de knapper som var der før
-                 */
-                val buttonShape = RoundedCornerShape(8.dp)
+                Spacer(modifier = Modifier.width(16.dp))
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .height(56.dp)
-                        .clip(buttonShape)
-                        .border(width = 1.dp, color = orange, shape = buttonShape)
-                        .clickable { navController.navigate("profile-measurements-screen") },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Gem mine mål",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        maxLines = 1,
-                        softWrap = false,
-                        color = orange
+                        .fillMaxHeight(),
+                    contentAlignment = Alignment.CenterEnd,
+
+                    ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logoudentekst),
+                        contentDescription = "Logo",
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.fillMaxSize()
                     )
-                }
-
-                Spacer(modifier = Modifier.width(16.dp))
-
-                Box(
-                    modifier = Modifier
-                        .weight(2f)
-                        .height(56.dp)
-                        .clip(buttonShape)
-                        .background(orange)
-                        .clickable { navController.navigate("cart-screen") },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Tilføj til kurv",
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-
                 }
             }
-            // Segment 4: Result image
-            Row(
+        }/*
+        Tekst under logo
+         */
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(0.55f)
+                .padding(horizontal = 24.dp)
+                .padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Baseret på dine mål har vi fundet et BH-design, der passer til din krop.",
+                fontSize = 16.sp,
+                color = textStyle.color
+            )
+        }/*
+        Knapperne
+        */
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(horizontal = 22.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            /*
+            Havde problemer med Button function, så jeg har brugt box istedet
+            AI hjalp med layoutstyling så det lignede de knapper som var der før
+             */
+            val buttonShape = RoundedCornerShape(8.dp)
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(2.5f)
+                    .weight(1f)
+                    .height(56.dp)
+                    .clip(buttonShape)
+                    .border(width = 1.dp, color = orange, shape = buttonShape)
+                    .clickable { navController.navigate("profile-measurements-screen") },
+                contentAlignment = Alignment.Center
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.resultimage),
-                    contentDescription = "Measurement focus billede",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(6f)
-                        .padding(horizontal = 16.dp)
+                Text(
+                    text = "Gem mine mål",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    maxLines = 1,
+                    softWrap = false,
+                    color = orange
+                )
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Box(
+                modifier = Modifier
+                    .weight(2f)
+                    .height(56.dp)
+                    .clip(buttonShape)
+                    .background(orange)
+                    .clickable { navController.navigate("cart-screen") },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Tilføj til kurv",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
             }
         }
+        // Segment 4: Result image
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(2.5f)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.resultimage),
+                contentDescription = "Measurement focus billede",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(6f)
+                    .padding(horizontal = 16.dp)
+            )
+
+        }
+    }
 }
