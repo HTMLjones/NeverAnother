@@ -39,7 +39,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.neveranother.classes.viewModel.GuideViewModel
 import com.example.neveranother.classes.viewModel.MeasureViewModel
@@ -56,12 +55,12 @@ fun MeasurementScreen(
     val measurementRows = measurements.chunked(3)
 
 /*
-#####Fik en del hjælp af AI her
+#####################Fik en del hjælp af AI til denne selectedMeasurementHistory
 Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og dermed ville gå tilbage til homepage
 så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
  */
     val selectedMeasurementHistory = remember { mutableListOf<Int>() }
-
+//#########################
 
     Column(
         modifier = Modifier
@@ -81,7 +80,7 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable {
-//#####Fortsættelse af AI hjælp her til tilbage knap historik
+//#####Fortsættelse af AI hjælp her til tilbage knap historik##################
                         if (selectedMeasurementHistory.isNotEmpty()) {
                             val previousMeasurementId =
                                 selectedMeasurementHistory.removeAt(selectedMeasurementHistory.lastIndex)
@@ -92,6 +91,7 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
                         } else {
                             navController.popBackStack()
                         }
+//############################ Hertil ########################################
                     }, contentAlignment = Alignment.Center
             ) {
                 Icon(

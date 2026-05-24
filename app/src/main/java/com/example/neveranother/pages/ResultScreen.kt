@@ -51,10 +51,7 @@ fun ResultScreen(
     val headerColor = Color(0xFF2F3136)
     val dividerColor = Color(0xFFD3CBC0)
     val orange = Color(0xFFFF6A00)
-    val textStyle = TextStyle(
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Medium,
-        color = Color(0xFF4A4A4A))
+    val textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium, color = Color(0xFF4A4A4A))
 
         Column(
             modifier = Modifier

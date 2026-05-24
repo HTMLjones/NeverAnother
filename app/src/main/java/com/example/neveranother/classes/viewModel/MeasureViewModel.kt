@@ -1,6 +1,5 @@
 package com.example.neveranother.classes.viewModel
 
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.neveranother.R
@@ -8,8 +7,6 @@ import com.example.neveranother.classes.BhMeasurements
 
 //Simon
 class MeasureViewModel : ViewModel() {
-
-    //val measurementValue = mutableStateMapOf<Int, String>()
 
     val measurements = listOf<BhMeasurements>(
         BhMeasurements(
