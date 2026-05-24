@@ -48,19 +48,12 @@ import com.example.neveranother.component.MeasureBox
 //Simon
 @Composable
 fun MeasurementScreen(
-    navController: NavController
+    navController: NavController,
+    measurementViewModel: MeasureViewModel
 ) {
-    val measureViewModel = viewModel<MeasureViewModel>()
-    //Det er sådan jeg kan finde ud af at gøre det, der findes nok en bedre måde :)
-    val measurements = measureViewModel.measurements.take(6)
-
-    /*Input fra brugeren, bliver ført ind i measurementValue, men siden vi kører med predefined
-     list of measurements fra MeasureViewModel, dette forestiller jeg
-     mig bliver fikset når vi får sat databasen op, da værdierne bliver hentet fra objektet,
-      som så skal opdateres hver gang der bliver indtastet en ny værdi
-      */
-    val measurementValues = measureViewModel.measurementValues
+    val measurements = measurementViewModel.measurements.take(6)
     var selectedMeasurement by remember { mutableStateOf(measurements.first()) }
+    val measurementRows = measurements.chunked(3)
 
 /*
 #####Fik en del hjælp af AI her
@@ -68,7 +61,7 @@ Tilbage knap kunne ikke være popBackstack da det kører på navcontrolleren og 
 så måtte lave en historik i en liste som kan selecte prev element og vælge den igen
  */
     val selectedMeasurementHistory = remember { mutableListOf<Int>() }
-    val measurementRows = measurements.chunked(3)
+
 
     Column(
         modifier = Modifier
@@ -172,10 +165,11 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
         ) {
             OutlinedTextField(
                 //Her er der også fejl ift measurement Value
-                value = measurementValues[selectedMeasurement.measurementId] ?: "",
+                value = selectedMeasurement.getMeasurementValue(),
                 onValueChange = {
-                    measurementValues[selectedMeasurement.measurementId] = it
+                    selectedMeasurement.setMeasurementValue(it)
                 },//it refers to value
+                label = null,
                 modifier = Modifier.fillMaxWidth(0.5f),
                 placeholder = {
                     Text(
@@ -209,7 +203,8 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
                     unfocusedBorderColor = Color(0xFFE07B39),
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White
-                )
+                ),
+                maxLines = 1
             )
             //Jannik
             IconButton(

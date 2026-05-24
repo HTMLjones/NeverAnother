@@ -33,7 +33,7 @@ fun MeasureBox(
     Denne værdi er den værdi som er gemt på det objekt af BhMeasurements,
     som hentes til hver boks. Forestiller mig at når databasen kommer op og
     vi poster det der, at dette vil virke */
-    val measurementInput = measurements.measurementValue ?: 0.0
+    val measurementInput = measurements.getMeasurementValue()
 
     Column(
         modifier = modifier
@@ -82,7 +82,7 @@ fun MeasureBox(
                 Text(
                     //Virker ikke fordi den henter fra viewmodel og dermed ikke bliver opdateret
                     // undervejs, men den skal vise de indtastede målinger når de bliver skrevet ind
-                    text = measurementInput.toString(),
+                    text = measurementInput,
                     modifier = Modifier.weight(1f),
                     color = Color(0xFF8E8E8E),
                     fontSize = 18.sp
