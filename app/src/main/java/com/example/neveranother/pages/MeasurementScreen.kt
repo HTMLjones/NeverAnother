@@ -8,12 +8,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
@@ -71,14 +75,16 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1.2f)
-                .padding(start = 16.dp, end = 16.dp, top = 16.dp),
+                .height(120.dp)
+                .padding(start = 24.dp, end = 24.dp, top = 14.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
+            Icon(
+                imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                contentDescription = "Tilbage knap",
+                tint = Color(0xFF2F3136),
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
+                    .size(35.dp)
                     .clickable {
 //#####Fortsættelse af AI hjælp her til tilbage knap historik##################
                         if (selectedMeasurementHistory.isNotEmpty()) {
@@ -92,26 +98,15 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
                             navController.popBackStack()
                         }
 //############################ Hertil ########################################
-                    }, contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Tilbage knap",
-                    tint = Color(0xFF1A1A1A)
-                )
-            }
-            Text(
-                text = "Lav dine målinger digitalt",
-                modifier = Modifier.weight(4f),
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF1A1A1A),
-                textAlign = TextAlign.Center
+                    }
             )
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = "Indtast dine mål",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF2F3136),
+                modifier = Modifier.fillMaxWidth()
             )
         }
 
@@ -122,7 +117,7 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(6f)
+                .weight(7f)
                 .padding(horizontal = 16.dp)
         )
 
@@ -147,8 +142,8 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(horizontal = 16.dp),
-            contentAlignment = Alignment.TopStart
+                .padding(horizontal = 24.dp),
+            contentAlignment = Alignment.CenterStart
         ) {
             Text(
                 text = selectedMeasurement.measurementDescription,
@@ -161,7 +156,8 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f), contentAlignment = Alignment.BottomCenter
+                .weight(1.5f)
+                .padding(top = 10.dp), contentAlignment = Alignment.Center
         ) {
             OutlinedTextField(
                 //Her er der også fejl ift measurement Value
@@ -240,14 +236,14 @@ så måtte lave en historik i en liste som kan selecte prev element og vælge de
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(3.5f)
+                .weight(5f)
                 .padding(start = 16.dp, end = 16.dp, top = 26.dp, bottom = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Bottom)
+            verticalArrangement = Arrangement.spacedBy(14.dp, Alignment.Bottom)
         ) {
             measurementRows.forEach { rowMeasurements ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     rowMeasurements.forEach { measurement ->
                         if (measurement.measurementId == 6) {

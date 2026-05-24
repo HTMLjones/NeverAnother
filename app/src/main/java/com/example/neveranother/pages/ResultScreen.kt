@@ -62,7 +62,7 @@ fun ResultScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(0.8f)
+                    .height(120.dp)
                     .padding(start = 24.dp, end = 24.dp, top = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
