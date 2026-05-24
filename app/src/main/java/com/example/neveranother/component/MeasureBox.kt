@@ -33,7 +33,7 @@ fun MeasureBox(
     Denne værdi er den værdi som er gemt på det objekt af BhMeasurements,
     som hentes til hver boks. Forestiller mig at når databasen kommer op og
     vi poster det der, at dette vil virke */
-    val measurementInput = measurements.measurementValue ?: 0.0
+    val measurementInput = measurements.getMeasurementValue()
 
     Column(
         modifier = modifier
@@ -46,27 +46,27 @@ fun MeasureBox(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f),
-            contentAlignment = Alignment.TopCenter
+                .weight(2.5f),
+            contentAlignment = Alignment.CenterStart
         ) {
             Text(
                 text = title,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 2.dp),
+                    .padding(top = 1.dp),
                 color = Color(0xFF3D3F45),
                 fontSize = 13.sp,
                 lineHeight = 17.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
-                maxLines = 3
+                maxLines = 2
             )
         }
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                .weight(2f)
                 .clip(RoundedCornerShape(8.dp))
                 .background(Color(0xFFE7E5E0))
                 .border(width = 2.dp, color = Color(0xFF8A887F), shape = RoundedCornerShape(8.dp))
@@ -75,17 +75,20 @@ fun MeasureBox(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.Center)
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 //Boksens tekstfelt altså "0.0 CM"
                 Text(
                     //Virker ikke fordi den henter fra viewmodel og dermed ikke bliver opdateret
                     // undervejs, men den skal vise de indtastede målinger når de bliver skrevet ind
-                    text = measurementInput.toString(),
-                    modifier = Modifier.weight(1f),
+                    text = measurementInput,
+                    modifier = Modifier.weight(1f)
+                        .fillMaxWidth()
+                        .padding(end = 5.dp),
                     color = Color(0xFF8E8E8E),
-                    fontSize = 18.sp
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.End
                 )
 
                 Text(

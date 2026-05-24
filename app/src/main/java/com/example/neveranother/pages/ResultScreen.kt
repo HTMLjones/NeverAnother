@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,49 +29,57 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.neveranother.R
+import com.example.neveranother.classes.viewModel.MeasureViewModel
 
 //Simon
 @Composable
 fun ResultScreen(
-    navController: NavController
+    navController: NavController, measurementViewModel: MeasureViewModel
 ) {
-    val screenBackground = Color(0xFFF5EFE3)
-    val primaryText = Color(0xFF2F3136)
-    val secondaryText = Color(0xFF4A4A4A)
-    val divider = Color(0xFFD3CBC0)
-    val actionOrange = Color(0xFFFF6A00)
+    //Ville godt have lavet resultaterne i et forEach loop istedet
+    val inputValueOfMeasurement: (Int) -> String = { measurementId: Int ->
+        measurementViewModel.measurements[measurementId].getMeasurementValue()
+    }
+    //Laver disse farve val for nemt at kunne ændre dem til farverne fra brandbooken, hvis det bliver en prioritet
+    val backgroundColor = Color(0xFFF5EFE3)
+    val headerColor = Color(0xFF2F3136)
+    val dividerColor = Color(0xFFD3CBC0)
+    val orange = Color(0xFFFF6A00)
+    val textStyle =
+        TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium, color = Color(0xFF4A4A4A))
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(screenBackground)
+            .background(backgroundColor)
     ) {
         // Segment 1: Overskrift
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.8f)
+                .height(120.dp)
                 .padding(start = 24.dp, end = 24.dp, top = 14.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                 contentDescription = "Tilbage knap",
-                tint = primaryText,
-                modifier = Modifier.size(38.dp)
-                    .clickable { navController.popBackStack() }
-            )
+                tint = headerColor,
+                modifier = Modifier
+                    .size(35.dp)
+                    .clickable { navController.popBackStack() })
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Her er dine resultater",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                color = primaryText,
+                color = headerColor,
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -93,25 +102,44 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Omfang over brystet", fontSize = 14.sp, color = secondaryText)
                     Text(
-                        text = "0.00 placeholder",
-                        fontSize = 16.sp,
-                        color = secondaryText,
-                        modifier = Modifier.padding(top = 18.dp)
+                        text = "Omfang over brystet", style = textStyle
                     )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(0),//Index 0 for første BhMeasurement
+                            style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Omfang under brystet", fontSize = 14.sp, color = secondaryText)
                     Text(
-                        text = "0.00 placeholder",
-                        fontSize = 16.sp,
-                        color = secondaryText,
-                        modifier = Modifier.padding(top = 18.dp)
+                        text = "Omfang under brystet", style = textStyle
                     )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(1), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
                 }
             }
 
@@ -119,7 +147,7 @@ fun ResultScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 18.dp),
-                color = divider,
+                color = dividerColor,
                 thickness = 1.dp
             )/*
             Anden row resultater
@@ -133,25 +161,43 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Volumen type", fontSize = 14.sp, color = secondaryText)
                     Text(
-                        text = "Type selected placeholder",
-                        fontSize = 14.sp,
-                        color = secondaryText,
-                        modifier = Modifier.padding(top = 18.dp)
+                        text = "Volumen type", style = textStyle
                     )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(2), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Brystbredde", fontSize = 14.sp, color = secondaryText)
                     Text(
-                        text = "0.00 placeholder",
-                        fontSize = 16.sp,
-                        color = secondaryText,
-                        modifier = Modifier.padding(top = 18.dp)
+                        text = "Brystbredde", style = textStyle
                     )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(3), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
                 }
             }
 
@@ -159,7 +205,7 @@ fun ResultScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 18.dp),
-                color = divider,
+                color = dividerColor,
                 thickness = 1.dp
             )/*
             Tredje row resultater
@@ -173,13 +219,22 @@ fun ResultScreen(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "Bryst højde", fontSize = 14.sp, color = secondaryText)
                     Text(
-                        text = "0.00 placeholder",
-                        fontSize = 16.sp,
-                        color = secondaryText,
-                        modifier = Modifier.padding(top = 18.dp)
+                        text = "Bryst højde", style = textStyle
                     )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 18.dp)
+                            .fillMaxWidth(0.8f),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = inputValueOfMeasurement(4), style = textStyle
+                        )
+                        Text(
+                            text = "CM", style = textStyle
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Box(
@@ -209,8 +264,8 @@ fun ResultScreen(
         ) {
             Text(
                 text = "Baseret på dine mål har vi fundet et BH-design, der passer til din krop.",
-                fontSize = 14.sp,
-                color = secondaryText
+                fontSize = 16.sp,
+                color = textStyle.color
             )
         }/*
         Knapperne
@@ -224,8 +279,8 @@ fun ResultScreen(
         ) {
 
             /*
-            Havde problemer med Button function, så jeg har brugt box istedet
-            AI hjalp med layoutstyling så det lignede de knapper som var der før
+            Havde problemer med nav til Button function, så jeg har brugt box istedet
+            AI hjalp med layoutstyling så det lignede de knapper som var der før, den foreslog også farve values i starten som jeg så implementerede
              */
             val buttonShape = RoundedCornerShape(8.dp)
             Box(
@@ -233,17 +288,17 @@ fun ResultScreen(
                     .weight(1f)
                     .height(56.dp)
                     .clip(buttonShape)
-                    .border(width = 1.dp, color = actionOrange, shape = buttonShape)
-                    .clickable { navController.navigate("measurement-screen") },
+                    .border(width = 1.dp, color = orange, shape = buttonShape)
+                    .clickable { navController.navigate("profile-measurements-screen") },
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Start forfra",
+                    text = "Gem mine mål",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     maxLines = 1,
                     softWrap = false,
-                    color = actionOrange
+                    color = orange
                 )
             }
 
@@ -254,7 +309,7 @@ fun ResultScreen(
                     .weight(2f)
                     .height(56.dp)
                     .clip(buttonShape)
-                    .background(actionOrange)
+                    .background(orange)
                     .clickable { navController.navigate("cart-screen") },
                 contentAlignment = Alignment.Center
             ) {
