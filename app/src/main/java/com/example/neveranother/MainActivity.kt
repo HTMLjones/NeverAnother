@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.classes.viewModel.ProfilViewModel
 import com.example.neveranother.component.BottomNavBar
 import com.example.neveranother.pages.CartScreen
@@ -35,6 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val measurementViewModel = viewModel<MeasureViewModel>()
             val profilViewModel = viewModel<ProfilViewModel>()
             val navController = rememberNavController()
             Scaffold(
@@ -58,13 +60,10 @@ class MainActivity : ComponentActivity() {
                         GuideScreen(navController = navController)
                     }
                     composable("measurement-screen") {
-                        MeasurementScreen(navController)
+                        MeasurementScreen(navController, measurementViewModel)
                     }
                     composable("result-screen") {
-                        ResultScreen(navController = navController)
-                    }
-                    composable("measurement-screen") {
-                        MeasurementScreen(navController = navController)
+                        ResultScreen(navController, measurementViewModel)
                     }
                     composable("profile-screen") {
                         ProfileScreen(navController, profilViewModel)
