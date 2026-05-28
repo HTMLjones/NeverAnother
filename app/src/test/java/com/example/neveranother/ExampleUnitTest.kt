@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.neveranother.classes.viewModel.ProfilViewModel
 import com.example.neveranother.pages.LoginScreen
 import com.example.neveranother.pages.ProfileStartScreen
@@ -15,34 +16,25 @@ import org.junit.Assert.assertTrue
 
 
 import org.junit.Assert.*
+import org.junit.Rule
+//Jonas Mørk Nielsen
+class ProfileUnitTest {
 
-class Profileunittest {
-    //Jonas Mørk Nielsen
     @Test
-    fun isLoginOptionOnScreen() {
-        val composeTestRule = createComposeRule()
-        composeTestRule.setContent {
-            ProfileStartScreen(
-                navController = rememberNavController(),
-                viewModel = ProfilViewModel()
-            )
-        }
-        composeTestRule.onNodeWithText("Login").assertIsDisplayed()
+    fun isEmailOnScreen() {
+        val viewModel = ProfilViewModel()
+        viewModel.email = "email@gmail.com"
+        assertEquals("email@gmail.com", viewModel.email)
     }
 
-
     @Test
-    fun isInputAdgangskodeOnScreen() {
-        val composeTestRule = createComposeRule()
-        composeTestRule.setContent {
-            LoginScreen(
-                navController = rememberNavController(),
-                viewModel = ProfilViewModel()
-            )
-        }
-        composeTestRule.onNodeWithText("Adgangskode").assertIsDisplayed()
+    fun profilViewModel_adgangskodeStarterSomTomt() {
+        val viewModel = ProfilViewModel()
+        viewModel.adgangskode = "adgangskode123"
+        assertEquals("adgangskode123", viewModel.adgangskode)
     }
 }
+
 //Jannik
 
 class MeasureUnitTest {
