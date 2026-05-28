@@ -21,14 +21,14 @@ import org.junit.Rule
 class ProfileUnitTest {
 
     @Test
-    fun isEmailOnScreen() {
+    fun DoesEmailWork() {
         val viewModel = ProfilViewModel()
         viewModel.email = "email@gmail.com"
         assertEquals("email@gmail.com", viewModel.email)
     }
 
     @Test
-    fun profilViewModel_adgangskodeStarterSomTomt() {
+    fun DoesPasswordWork() {
         val viewModel = ProfilViewModel()
         viewModel.adgangskode = "adgangskode123"
         assertEquals("adgangskode123", viewModel.adgangskode)
