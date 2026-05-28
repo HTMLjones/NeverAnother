@@ -3,21 +3,21 @@ NeverAnother er en Android-app udviklet i Kotlin med fokus på at omsætte en hi
 ​
 ​
 
-#Om projektet
+Om projektet
 Projektet er bygget som en native Android-app med en klassisk modulopdeling og skærmbaseret struktur. Repositoriet indeholder blandt andet mapperne classes, component og pages samt en MainActivity.kt, hvilket peger på en opbygning med genbrugelige komponenter, logikklasser og selvstændige app-skærme.
 ​
 
 Ud fra den tilgængelige prototype består appen af flere centrale visninger, herunder en forside, en side til at oprette eller vælge BH, en måleskærm, en profilside og en kurv. Det viser, at appen er designet som et komplet brugerflow fra introduktion og valg til måltagning og opsamling af brugerens informationer.
 ​
 
-#Formål
+Formål
 Formålet med projektet var at udvikle en app, der følger det oprindelige design så præcist som muligt og omsætter en high-fidelity-prototype til en reel Android-løsning. Der har derfor været fokus på både visuel præcision, navigation mellem skærme og håndtering af brugerinput i appens forskellige trin.
 ​
 
 Commit-historikken viser også, at der konkret er arbejdet med skærme som MeasurementScreen.kt og ResultScreen.kt, samt med at gemme brugerens mål og vise dem i appen. Det understøtter, at projektet ikke kun handler om layout, men også om funktionalitet og dataflow mellem skærmene.
 ​
 
-#Indhold i appen
+#ndhold i appen
 Appen indeholder et flow, hvor brugeren bliver guidet gennem forskellige trin i oplevelsen. På baggrund af prototypen og de synlige fil- og commitnavne kan indholdet beskrives sådan:
 ​
 ​
@@ -41,7 +41,7 @@ En profilside med personlige oplysninger og målinger.
 En kurv, hvor valgte produkter eller oplysninger samles.
 ​
 
-#Teknologier
+Teknologier
 Projektet er udviklet i Kotlin som Android-app og bruger Gradle Kotlin DSL via build.gradle.kts-filerne i repositoriet. Kodestrukturen og filnavnene peger på en moderne Android-opbygning med adskillelse mellem UI, komponenter og app-logik.
 ​
 
