@@ -132,11 +132,11 @@ fun ProfileScreen(navController: NavController, profilViewModel: ProfilViewModel
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        OrderRow(label = "Dine bestillinger", buttonText = "Spor og administrér køb  >")
+        OrderRow(label = "Dine bestillinger", buttonText = "Spor og administrér køb  >", onClick = {navController.navigate("profile-shipping-screen")})
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        OrderRow(label = "Gave kort", buttonText = "Se saldo og indløs  >")
+        OrderRow(label = "Gave kort", buttonText = "Se saldo og indløs  >",onClick = {navController.navigate("gavekort")})
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -210,7 +210,7 @@ fun ProfileInputRow(
 }
 
 @Composable
-fun OrderRow(label: String, buttonText: String) {
+fun OrderRow(label: String, buttonText: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -229,7 +229,8 @@ fun OrderRow(label: String, buttonText: String) {
                     width = 1.3.dp,
                     color = Color(0xFFFF5A00),
                     shape = RoundedCornerShape(3.dp)
-                ),
+                )
+                .clickable { onClick()},
             contentAlignment = Alignment.Center
         ) {
             Text(

@@ -48,41 +48,50 @@ class MainActivity : ComponentActivity() {
                     startDestination = "home-screen",
                     modifier = Modifier.padding(innerPadding)
                 ) {
-                    composable("cart-screen") {
-                        CartScreen(
-                            navController = navController
-                        )
-                    }
                     composable("home-screen") {
                         HomeScreen(navController)
                     }
-                    composable("guide-screen") {
-                        GuideScreen(navController = navController)
+
+                    composable("cart-screen") {
+                        CartScreen(navController)
                     }
+
+                    composable("guide-screen") {
+                        GuideScreen(navController)
+                    }
+
                     composable("measurement-screen") {
                         MeasurementScreen(navController, measurementViewModel)
                     }
+
                     composable("result-screen") {
                         ResultScreen(navController, measurementViewModel)
                     }
+
+                    composable("profile-start-screen") {
+                        ProfileStartScreen(navController)
+                    }
+
+                    composable("register") {
+                        registerProfileScreen(navController, profilViewModel)
+                    }
+
+                    composable("Login") {
+                        LoginScreen(navController, profilViewModel)
+                    }
+
                     composable("profile-screen") {
                         ProfileScreen(navController, profilViewModel)
                     }
-                    composable(route = "profile-shipping-screen") {
+
+                    composable("profile-shipping-screen") {
                         ProfileShippingScreen(navController, profilViewModel)
                     }
-                    composable(route = "profile-start-screen") {
-                        ProfileStartScreen(navController = navController)
+
+                    composable("shipping") {
+                        ProfileShippingScreen(navController, profilViewModel)
                     }
-                    composable(route = "register") {
-                        registerProfileScreen(navController = navController, viewModel = profilViewModel)
-                    }
-                    composable(route = "Login") {
-                        LoginScreen(navController = navController, viewModel = profilViewModel)
-                    }
-                    composable(route = "shipping") {
-                        ProfileShippingScreen(navController = navController, viewModel = profilViewModel)
-                    }
+
                     composable("profile-measurements-screen") {
                         ProfileMeasurementsScreen(navController, profilViewModel)
                     }
@@ -90,28 +99,9 @@ class MainActivity : ComponentActivity() {
                     composable("gavekort") {
                         ProfileGiftCardScreen(navController, profilViewModel)
                     }
-                    //Profile login
-                    composable(route = "Login") {
-                        LoginScreen(navController, profilViewModel)
-                    }
-                    //Profil
-                    composable(route = "profile-screen") {
-                        ProfileScreen(navController, profilViewModel)
-                    }
-                    composable(route = "shipping") {
-                        ProfileShippingScreen(navController, profilViewModel
-                        )
-                    }
-                    composable("profile-measurements-screen") {
-                        ProfileMeasurementsScreen(navController, profilViewModel)
-                    }
-
-                    composable("gavekort") {
-                        ProfileGiftCardScreen(navController, profilViewModel)
-                    }
-
-
                 }
+
+
             }
         }
     }
