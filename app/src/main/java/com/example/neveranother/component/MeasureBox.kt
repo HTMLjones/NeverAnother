@@ -80,8 +80,6 @@ fun MeasureBox(
             ) {
                 //Boksens tekstfelt altså "0.0 CM"
                 Text(
-                    //Virker ikke fordi den henter fra viewmodel og dermed ikke bliver opdateret
-                    // undervejs, men den skal vise de indtastede målinger når de bliver skrevet ind
                     text = measurementInput,
                     modifier = Modifier.weight(1f)
                         .fillMaxWidth()

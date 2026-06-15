@@ -30,12 +30,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.neveranother.R
+import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.classes.viewModel.ProfilViewModel
 
 @Composable
-fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilViewModel) {
+fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureViewModel, profileViewModel: ProfilViewModel) {
 
-    val OrangeColor = Color(0xFFFF5F00)
+    val orangeColor = Color(0xFFFF5F00)
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -72,7 +73,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 .width(350.dp)
                 .border(
                     width = 3.dp,
-                    color = OrangeColor,
+                    color = orangeColor,
                     shape = RoundedCornerShape(5.dp)
                 )
         )
@@ -88,14 +89,14 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Omfang over brystet")
                     Text(
-                        text = viewModel.omfangOverBryst.ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[0].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Omfang under brystet")
                     Text(
-                        text = viewModel.omfangUnderBryst.ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[1].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
@@ -106,14 +107,14 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Volume Type")
                     Text(
-                        text = viewModel.volumeType.ifEmpty { "*SELECTED TYPE*" },
+                        text = viewModel.measurements[3].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Brystbredde")
                     Text(
-                        text = viewModel.brystbredde.ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[4].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
@@ -124,14 +125,14 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Brysthøjde")
                     Text(
-                        text = viewModel.brysthoejde.ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[5].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Dato for mål")
                     Text(
-                        text = viewModel.datoForMaal.ifEmpty { "xx/xx/xx" },
+                        text = profileViewModel.datoForMaal.ifEmpty { "xx/xx/xx" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
@@ -152,7 +153,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 Button(
                     onClick = { },
                     modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(containerColor = OrangeColor)
+                    colors = ButtonDefaults.buttonColors(containerColor = orangeColor)
                 ) {
                     Text("Slet mål")
                 }
@@ -162,7 +163,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: ProfilVie
                 Button(
                     onClick = { },
                     modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(containerColor = OrangeColor)
+                    colors = ButtonDefaults.buttonColors(containerColor = orangeColor)
                 ) {
                     Text("Bestil")
                 }

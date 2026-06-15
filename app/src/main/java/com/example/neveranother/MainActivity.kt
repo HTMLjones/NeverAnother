@@ -84,7 +84,7 @@ class MainActivity : ComponentActivity() {
                         ProfileShippingScreen(navController = navController, viewModel = profilViewModel)
                     }
                     composable("profile-measurements-screen") {
-                        ProfileMeasurementsScreen(navController, profilViewModel)
+                        ProfileMeasurementsScreen(navController, measurementViewModel, profilViewModel)
                     }
                     composable("gavekort") {
                         ProfileGiftCardScreen(navController, profilViewModel)
