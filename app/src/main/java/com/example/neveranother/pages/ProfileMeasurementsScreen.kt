@@ -2,8 +2,6 @@ package com.example.neveranother.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,15 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,6 +25,7 @@ import androidx.navigation.NavController
 import com.example.neveranother.R
 import com.example.neveranother.classes.viewModel.MeasureViewModel
 import com.example.neveranother.classes.viewModel.ProfilViewModel
+import com.example.neveranother.component.HeaderWithReturn
 
 @Composable
 fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureViewModel, profileViewModel: ProfilViewModel) {
@@ -41,28 +35,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureVi
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         // ← Tilbage-knap
-        Box(
-            modifier = Modifier
-                .size(56.dp)
-                .align(Alignment.Start)
-                .clickable { navController.popBackStack() },
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back",
-                modifier = Modifier.size(30.dp)
-            )
-        }
-
-        Image(
-            painter = painterResource(id = R.drawable.neveranotherlogo),
-            contentDescription = "Never Another Logo",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp)
-                .requiredSize(390.dp)
-        )
+        HeaderWithReturn(navController = navController)
 
         Image(
             painter = painterResource(id = R.drawable.modelpictureprofile),
@@ -107,14 +80,14 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureVi
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Volume Type")
                     Text(
-                        text = viewModel.measurements[3].getMeasurementValue().ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[2].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Brystbredde")
                     Text(
-                        text = viewModel.measurements[4].getMeasurementValue().ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[3].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
@@ -125,7 +98,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureVi
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Brysthøjde")
                     Text(
-                        text = viewModel.measurements[5].getMeasurementValue().ifEmpty { "0.00 CM" },
+                        text = viewModel.measurements[4].getMeasurementValue().ifEmpty { "0.00 CM" },
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }
