@@ -134,7 +134,7 @@ fun ProfileMeasurementsScreen(navController: NavController, viewModel: MeasureVi
                 Spacer(modifier = Modifier.width(16.dp))
 
                 Button(
-                    onClick = { },
+                    onClick = { navController.navigate("cart-screen") },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(containerColor = orangeColor)
                 ) {
