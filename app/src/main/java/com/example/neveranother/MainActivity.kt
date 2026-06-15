@@ -86,31 +86,9 @@ class MainActivity : ComponentActivity() {
                     composable("profile-measurements-screen") {
                         ProfileMeasurementsScreen(navController, profilViewModel)
                     }
-
                     composable("gavekort") {
                         ProfileGiftCardScreen(navController, profilViewModel)
                     }
-                    //Profile login
-                    composable(route = "Login") {
-                        LoginScreen(navController, profilViewModel)
-                    }
-                    //Profil
-                    composable(route = "profile-screen") {
-                        ProfileScreen(navController, profilViewModel)
-                    }
-                    composable(route = "shipping") {
-                        ProfileShippingScreen(navController, profilViewModel
-                        )
-                    }
-                    composable("profile-measurements-screen") {
-                        ProfileMeasurementsScreen(navController, profilViewModel)
-                    }
-
-                    composable("gavekort") {
-                        ProfileGiftCardScreen(navController, profilViewModel)
-                    }
-
-
                 }
             }
         }
